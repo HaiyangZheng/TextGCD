@@ -1,0 +1,1661 @@
+2024-11-28 17:19:39,564 - INFO - Training flowers_seed4_iscap with the following settings:
+2024-11-28 17:19:39,566 - INFO - Command-line arguments: output_dir=exp
+ experiment_name=flowers_seed4_iscap
+ seed=4
+ evaluate=False
+ dataset_name=flowers
+ backbone_name=ViT-B/16
+ cub_root=/leonardo_work/IscrC_Fed-GCD/GCD_datasets/CUB
+ cub_retrieved_text_path=retrieved_text/cub_retrieved_text.npy
+ flowers_root=/leonardo_work/IscrC_Fed-GCD/GCD_datasets
+ flowers_retrieved_text_path=retrieved_text/flowers_retrieved_text.npy
+ scars_root=/leonardo_work/IscrC_Fed-GCD/GCD_datasets
+ scars_retrieved_text_path=retrieved_text/scars_retrieved_text.npy
+ pets_root=/leonardo_work/IscrC_Fed-GCD/GCD_datasets
+ pets_retrieved_text_path=retrieved_text/pets_retrieved_text.npy
+ cifar10_root=/leonardo_work/IscrC_Fed-GCD/GCD_datasets/cifar10
+ cifar10_retrieved_text_path=retrieved_text/cifar10_retrieved_text.npy
+ cifar100_root=/leonardo_work/IscrC_Fed-GCD/GCD_datasets/cifar100
+ cifar100_retrieved_text_path=retrieved_text/cifar100_retrieved_text.npy
+ imagenet_root=/home/fandral/Nan/NCD_dataset
+ imagenet_retrieved_text_path=retrieved_text/imagenet100_retrieved_text.npy
+ osr_split_dir=data/ssb_splits
+ epochs=200
+ base_lr=0.0005
+ classifier_lr=0.1
+ momentum=0.9
+ weight_decay=0.0001
+ num_workers=8
+ batch_size=128
+ prop_train_labels=0.5
+ use_ssb_splits=True
+ transform=imagenet
+ n_views=2
+ selecting_ratio=0.6
+ lambda_loss=0.2
+ warm_up_epochs=10
+ class_aligning_epochs=5
+ num_attributes=2
+ num_tags=3
+ tau_s=0.1
+ tau_u=0.05
+ tau_t_start=0.035
+ tau_t_end=0.02
+ warmup_teacher_temp_epochs=30
+ memax_weight=2
+ image_size=224
+ train_classes=range(0, 51)
+ unlabeled_classes=range(51, 102)
+ num_labeled_classes=51
+ num_unlabeled_classes=51
+ log_path=exp/flowers_seed4_iscap-2024-11-28-17-19/logs/log.txt
+ model_path=exp/flowers_seed4_iscap-2024-11-28-17-19/models/model.pth
+ device=cuda
+2024-11-28 17:19:39,570 - INFO - Loading CLIP (backbone: ViT-B/16)
+2024-11-28 17:19:42,423 - INFO - Building custom CLIP
+2024-11-28 17:19:43,553 - INFO - Turning off gradients in both the image and the text encoder
+2024-11-28 17:19:43,554 - INFO - Parameters that require gradients: ['model.text_projection', 'model.visual.proj', 'model.visual.transformer.resblocks.11.attn.in_proj_weight', 'model.visual.transformer.resblocks.11.attn.in_proj_bias', 'model.visual.transformer.resblocks.11.attn.out_proj.weight', 'model.visual.transformer.resblocks.11.attn.out_proj.bias', 'model.visual.transformer.resblocks.11.ln_1.weight', 'model.visual.transformer.resblocks.11.ln_1.bias', 'model.visual.transformer.resblocks.11.mlp.c_fc.weight', 'model.visual.transformer.resblocks.11.mlp.c_fc.bias', 'model.visual.transformer.resblocks.11.mlp.c_proj.weight', 'model.visual.transformer.resblocks.11.mlp.c_proj.bias', 'model.visual.transformer.resblocks.11.ln_2.weight', 'model.visual.transformer.resblocks.11.ln_2.bias', 'model.transformer.resblocks.11.attn.in_proj_weight', 'model.transformer.resblocks.11.attn.in_proj_bias', 'model.transformer.resblocks.11.attn.out_proj.weight', 'model.transformer.resblocks.11.attn.out_proj.bias', 'model.transformer.resblocks.11.ln_1.weight', 'model.transformer.resblocks.11.ln_1.bias', 'model.transformer.resblocks.11.mlp.c_fc.weight', 'model.transformer.resblocks.11.mlp.c_fc.bias', 'model.transformer.resblocks.11.mlp.c_proj.weight', 'model.transformer.resblocks.11.mlp.c_proj.bias', 'model.transformer.resblocks.11.ln_2.weight', 'model.transformer.resblocks.11.ln_2.bias', 'image_classifier.weight_g', 'image_classifier.weight_v', 'text_classifier.weight_g', 'text_classifier.weight_v']
+2024-11-28 17:19:43,798 - INFO - len of train dataset: 1020
+2024-11-28 17:19:43,798 - INFO - len of test dataset: 765
+2024-11-28 17:19:43,804 - INFO - Parameters in classifier with big lr: ['image_classifier.weight_g', 'image_classifier.weight_v', 'text_classifier.weight_g', 'text_classifier.weight_v']
+2024-11-28 17:19:43,804 - INFO - Selecting 4 high-confidence samples for co-teaching.
+2024-11-28 17:19:53,489 - INFO - Before Train Accuracies: All 0.1438 | Old 0.0588 | New 0.1863
+2024-11-28 17:19:53,489 - INFO - Before Train Accuracies: All 0.1425 | Old 0.0588 | New 0.1843
+2024-11-28 17:20:03,262 - INFO - Epoch 1/200, Total Loss: 10.9743, Base Loss: 8.9761, Con Loss: 1.9983, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:20:03,262 - INFO -    Param Group: classifier_head, Learning Rate: 0.1000
+2024-11-28 17:20:03,262 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:20:07,609 - INFO - Text classifier Epoch 0 Train Accuracies: All 0.4039 | Old 0.4118 | New 0.4000
+2024-11-28 17:20:07,610 - INFO - Image classifier Epoch 0 Train Accuracies: All 0.2497 | Old 0.2039 | New 0.2725
+2024-11-28 17:20:11,881 - INFO - Weighted Accuracies: All 0.3111 | Old 0.2471 | New 0.3431
+2024-11-28 17:20:12,480 - INFO - Saved model!
+2024-11-28 17:20:21,091 - INFO - Epoch 2/200, Total Loss: 10.6792, Base Loss: 8.8140, Con Loss: 1.8652, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:20:21,091 - INFO -    Param Group: classifier_head, Learning Rate: 0.1000
+2024-11-28 17:20:21,091 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:20:25,472 - INFO - Text classifier Epoch 1 Train Accuracies: All 0.4118 | Old 0.4078 | New 0.4137
+2024-11-28 17:20:25,472 - INFO - Image classifier Epoch 1 Train Accuracies: All 0.2301 | Old 0.1490 | New 0.2706
+2024-11-28 17:20:29,864 - INFO - Weighted Accuracies: All 0.3124 | Old 0.2235 | New 0.3569
+2024-11-28 17:20:30,537 - INFO - Saved model!
+2024-11-28 17:20:39,342 - INFO - Epoch 3/200, Total Loss: 10.4878, Base Loss: 8.6399, Con Loss: 1.8479, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:20:39,342 - INFO -    Param Group: classifier_head, Learning Rate: 0.0999
+2024-11-28 17:20:39,342 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:20:43,729 - INFO - Text classifier Epoch 2 Train Accuracies: All 0.3817 | Old 0.3412 | New 0.4020
+2024-11-28 17:20:43,729 - INFO - Image classifier Epoch 2 Train Accuracies: All 0.2706 | Old 0.2392 | New 0.2863
+2024-11-28 17:20:48,132 - INFO - Weighted Accuracies: All 0.3098 | Old 0.3333 | New 0.2980
+2024-11-28 17:20:56,921 - INFO - Epoch 4/200, Total Loss: 10.1227, Base Loss: 8.3271, Con Loss: 1.7957, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:20:56,921 - INFO -    Param Group: classifier_head, Learning Rate: 0.0999
+2024-11-28 17:20:56,921 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:21:01,187 - INFO - Text classifier Epoch 3 Train Accuracies: All 0.3725 | Old 0.3686 | New 0.3745
+2024-11-28 17:21:01,187 - INFO - Image classifier Epoch 3 Train Accuracies: All 0.2732 | Old 0.2118 | New 0.3039
+2024-11-28 17:21:05,508 - INFO - Weighted Accuracies: All 0.3255 | Old 0.3490 | New 0.3137
+2024-11-28 17:21:06,197 - INFO - Saved model!
+2024-11-28 17:21:15,098 - INFO - Epoch 5/200, Total Loss: 9.4928, Base Loss: 7.7588, Con Loss: 1.7340, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:21:15,099 - INFO -    Param Group: classifier_head, Learning Rate: 0.0998
+2024-11-28 17:21:15,099 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:21:19,405 - INFO - Text classifier Epoch 4 Train Accuracies: All 0.3987 | Old 0.4353 | New 0.3804
+2024-11-28 17:21:19,406 - INFO - Image classifier Epoch 4 Train Accuracies: All 0.3085 | Old 0.2980 | New 0.3137
+2024-11-28 17:21:23,751 - INFO - Weighted Accuracies: All 0.3647 | Old 0.3686 | New 0.3627
+2024-11-28 17:21:24,441 - INFO - Saved model!
+2024-11-28 17:21:32,865 - INFO - Epoch 6/200, Total Loss: 8.8857, Base Loss: 7.1024, Con Loss: 1.7832, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:21:32,865 - INFO -    Param Group: classifier_head, Learning Rate: 0.0998
+2024-11-28 17:21:32,865 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:21:37,377 - INFO - Text classifier Epoch 5 Train Accuracies: All 0.4000 | Old 0.4784 | New 0.3608
+2024-11-28 17:21:37,377 - INFO - Image classifier Epoch 5 Train Accuracies: All 0.2993 | Old 0.2902 | New 0.3039
+2024-11-28 17:21:41,735 - INFO - Weighted Accuracies: All 0.3948 | Old 0.4314 | New 0.3765
+2024-11-28 17:21:42,429 - INFO - Saved model!
+2024-11-28 17:21:51,129 - INFO - Epoch 7/200, Total Loss: 8.1272, Base Loss: 6.4191, Con Loss: 1.7081, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:21:51,129 - INFO -    Param Group: classifier_head, Learning Rate: 0.0997
+2024-11-28 17:21:51,129 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:21:55,452 - INFO - Text classifier Epoch 6 Train Accuracies: All 0.4588 | Old 0.5373 | New 0.4196
+2024-11-28 17:21:55,452 - INFO - Image classifier Epoch 6 Train Accuracies: All 0.3216 | Old 0.2745 | New 0.3451
+2024-11-28 17:21:59,742 - INFO - Weighted Accuracies: All 0.4275 | Old 0.4392 | New 0.4216
+2024-11-28 17:22:00,431 - INFO - Saved model!
+2024-11-28 17:22:09,077 - INFO - Epoch 8/200, Total Loss: 7.6032, Base Loss: 5.8807, Con Loss: 1.7224, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:22:09,077 - INFO -    Param Group: classifier_head, Learning Rate: 0.0996
+2024-11-28 17:22:09,077 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:22:13,388 - INFO - Text classifier Epoch 7 Train Accuracies: All 0.5020 | Old 0.5725 | New 0.4667
+2024-11-28 17:22:13,388 - INFO - Image classifier Epoch 7 Train Accuracies: All 0.3294 | Old 0.2667 | New 0.3608
+2024-11-28 17:22:17,721 - INFO - Weighted Accuracies: All 0.4405 | Old 0.5020 | New 0.4098
+2024-11-28 17:22:18,410 - INFO - Saved model!
+2024-11-28 17:22:27,357 - INFO - Epoch 9/200, Total Loss: 7.0091, Base Loss: 5.2785, Con Loss: 1.7306, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:22:27,358 - INFO -    Param Group: classifier_head, Learning Rate: 0.0995
+2024-11-28 17:22:27,358 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:22:31,677 - INFO - Text classifier Epoch 8 Train Accuracies: All 0.5399 | Old 0.6118 | New 0.5039
+2024-11-28 17:22:31,677 - INFO - Image classifier Epoch 8 Train Accuracies: All 0.3542 | Old 0.3686 | New 0.3471
+2024-11-28 17:22:35,960 - INFO - Weighted Accuracies: All 0.4797 | Old 0.4863 | New 0.4765
+2024-11-28 17:22:36,648 - INFO - Saved model!
+2024-11-28 17:22:45,414 - INFO - Epoch 10/200, Total Loss: 6.4711, Base Loss: 4.7978, Con Loss: 1.6733, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:22:45,414 - INFO -    Param Group: classifier_head, Learning Rate: 0.0994
+2024-11-28 17:22:45,414 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:22:49,720 - INFO - Text classifier Epoch 9 Train Accuracies: All 0.6092 | Old 0.7176 | New 0.5549
+2024-11-28 17:22:49,720 - INFO - Image classifier Epoch 9 Train Accuracies: All 0.3673 | Old 0.3294 | New 0.3863
+2024-11-28 17:22:53,984 - INFO - Weighted Accuracies: All 0.5333 | Old 0.6196 | New 0.4902
+2024-11-28 17:22:54,685 - INFO - Saved model!
+2024-11-28 17:23:03,580 - INFO - Epoch 11/200, Total Loss: 6.1228, Base Loss: 4.4422, Con Loss: 1.6807, Pseudo Loss Image: 0.0000, Pseudo Loss Image: 0.0000
+2024-11-28 17:23:03,581 - INFO -    Param Group: classifier_head, Learning Rate: 0.0993
+2024-11-28 17:23:03,581 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:23:07,896 - INFO - Text classifier Epoch 10 Train Accuracies: All 0.6431 | Old 0.7451 | New 0.5922
+2024-11-28 17:23:07,896 - INFO - Image classifier Epoch 10 Train Accuracies: All 0.3843 | Old 0.4078 | New 0.3725
+2024-11-28 17:23:12,191 - INFO - Weighted Accuracies: All 0.5529 | Old 0.6784 | New 0.4902
+2024-11-28 17:23:12,907 - INFO - Saved model!
+2024-11-28 17:23:17,262 - INFO - len of text selected samples: 379
+2024-11-28 17:23:26,214 - INFO - Epoch 12/200, Total Loss: 9.6276, Base Loss: 4.3521, Con Loss: 1.7272, Pseudo Loss Image: 3.5483, Pseudo Loss Image: 3.5483
+2024-11-28 17:23:26,214 - INFO -    Param Group: classifier_head, Learning Rate: 0.0991
+2024-11-28 17:23:26,214 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:23:30,568 - INFO - Text classifier Epoch 11 Train Accuracies: All 0.6510 | Old 0.7529 | New 0.6000
+2024-11-28 17:23:30,568 - INFO - Image classifier Epoch 11 Train Accuracies: All 0.3490 | Old 0.4000 | New 0.3235
+2024-11-28 17:23:34,974 - INFO - Weighted Accuracies: All 0.5817 | Old 0.6510 | New 0.5471
+2024-11-28 17:23:35,692 - INFO - Saved model!
+2024-11-28 17:23:40,127 - INFO - len of text selected samples: 372
+2024-11-28 17:23:48,918 - INFO - Epoch 13/200, Total Loss: 8.5475, Base Loss: 3.7108, Con Loss: 1.7194, Pseudo Loss Image: 3.1173, Pseudo Loss Image: 3.1173
+2024-11-28 17:23:48,918 - INFO -    Param Group: classifier_head, Learning Rate: 0.0990
+2024-11-28 17:23:48,918 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:23:53,521 - INFO - Text classifier Epoch 12 Train Accuracies: All 0.6641 | Old 0.7412 | New 0.6255
+2024-11-28 17:23:53,521 - INFO - Image classifier Epoch 12 Train Accuracies: All 0.3935 | Old 0.5255 | New 0.3275
+2024-11-28 17:23:58,031 - INFO - Weighted Accuracies: All 0.6065 | Old 0.6980 | New 0.5608
+2024-11-28 17:23:58,750 - INFO - Saved model!
+2024-11-28 17:24:03,218 - INFO - len of text selected samples: 366
+2024-11-28 17:24:11,814 - INFO - Epoch 14/200, Total Loss: 7.7916, Base Loss: 3.3652, Con Loss: 1.7319, Pseudo Loss Image: 2.6945, Pseudo Loss Image: 2.6945
+2024-11-28 17:24:11,814 - INFO -    Param Group: classifier_head, Learning Rate: 0.0988
+2024-11-28 17:24:11,815 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:24:16,232 - INFO - Text classifier Epoch 13 Train Accuracies: All 0.6810 | Old 0.7490 | New 0.6471
+2024-11-28 17:24:16,232 - INFO - Image classifier Epoch 13 Train Accuracies: All 0.4967 | Old 0.7020 | New 0.3941
+2024-11-28 17:24:20,780 - INFO - Weighted Accuracies: All 0.6732 | Old 0.7765 | New 0.6216
+2024-11-28 17:24:21,501 - INFO - Saved model!
+2024-11-28 17:24:25,871 - INFO - len of text selected samples: 361
+2024-11-28 17:24:34,534 - INFO - Epoch 15/200, Total Loss: 6.7337, Base Loss: 2.9019, Con Loss: 1.7192, Pseudo Loss Image: 2.1127, Pseudo Loss Image: 2.1127
+2024-11-28 17:24:34,534 - INFO -    Param Group: classifier_head, Learning Rate: 0.0986
+2024-11-28 17:24:34,534 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:24:38,831 - INFO - Text classifier Epoch 14 Train Accuracies: All 0.6837 | Old 0.7529 | New 0.6490
+2024-11-28 17:24:38,831 - INFO - Image classifier Epoch 14 Train Accuracies: All 0.5961 | Old 0.7451 | New 0.5216
+2024-11-28 17:24:43,133 - INFO - Weighted Accuracies: All 0.6889 | Old 0.7569 | New 0.6549
+2024-11-28 17:24:43,828 - INFO - Saved model!
+2024-11-28 17:24:48,247 - INFO - len of text selected samples: 366
+2024-11-28 17:24:57,116 - INFO - Epoch 16/200, Total Loss: 6.2010, Base Loss: 2.7074, Con Loss: 1.6940, Pseudo Loss Image: 1.7996, Pseudo Loss Image: 1.7996
+2024-11-28 17:24:57,116 - INFO -    Param Group: classifier_head, Learning Rate: 0.0984
+2024-11-28 17:24:57,116 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:25:01,429 - INFO - Text classifier Epoch 15 Train Accuracies: All 0.6797 | Old 0.7882 | New 0.6255
+2024-11-28 17:25:01,430 - INFO - Image classifier Epoch 15 Train Accuracies: All 0.6484 | Old 0.7647 | New 0.5902
+2024-11-28 17:25:05,724 - INFO - Weighted Accuracies: All 0.6954 | Old 0.7882 | New 0.6490
+2024-11-28 17:25:06,415 - INFO - Saved model!
+2024-11-28 17:25:15,178 - INFO - len of image selected samples: 379
+2024-11-28 17:25:15,178 - INFO - len of text selected samples: 358
+2024-11-28 17:25:23,886 - INFO - Epoch 17/200, Total Loss: 8.0663, Base Loss: 2.5206, Con Loss: 1.7479, Pseudo Loss Image: 1.6492, Pseudo Loss Image: 1.6492
+2024-11-28 17:25:23,887 - INFO -    Param Group: classifier_head, Learning Rate: 0.0982
+2024-11-28 17:25:23,887 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:25:28,214 - INFO - Text classifier Epoch 16 Train Accuracies: All 0.7190 | Old 0.7569 | New 0.7000
+2024-11-28 17:25:28,214 - INFO - Image classifier Epoch 16 Train Accuracies: All 0.6771 | Old 0.8118 | New 0.6098
+2024-11-28 17:25:32,519 - INFO - Weighted Accuracies: All 0.7438 | Old 0.8314 | New 0.7000
+2024-11-28 17:25:33,212 - INFO - Saved model!
+2024-11-28 17:25:41,982 - INFO - len of image selected samples: 375
+2024-11-28 17:25:41,983 - INFO - len of text selected samples: 358
+2024-11-28 17:25:51,160 - INFO - Epoch 18/200, Total Loss: 7.0254, Base Loss: 2.4330, Con Loss: 1.7893, Pseudo Loss Image: 1.2657, Pseudo Loss Image: 1.2657
+2024-11-28 17:25:51,161 - INFO -    Param Group: classifier_head, Learning Rate: 0.0980
+2024-11-28 17:25:51,161 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:25:55,592 - INFO - Text classifier Epoch 17 Train Accuracies: All 0.7386 | Old 0.8039 | New 0.7059
+2024-11-28 17:25:55,592 - INFO - Image classifier Epoch 17 Train Accuracies: All 0.6928 | Old 0.8431 | New 0.6176
+2024-11-28 17:26:00,290 - INFO - Weighted Accuracies: All 0.7634 | Old 0.8627 | New 0.7137
+2024-11-28 17:26:00,984 - INFO - Saved model!
+2024-11-28 17:26:09,601 - INFO - len of image selected samples: 383
+2024-11-28 17:26:09,602 - INFO - len of text selected samples: 377
+2024-11-28 17:26:18,417 - INFO - Epoch 19/200, Total Loss: 6.9717, Base Loss: 2.3224, Con Loss: 1.7450, Pseudo Loss Image: 1.4386, Pseudo Loss Image: 1.4386
+2024-11-28 17:26:18,417 - INFO -    Param Group: classifier_head, Learning Rate: 0.0978
+2024-11-28 17:26:18,417 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:26:22,779 - INFO - Text classifier Epoch 18 Train Accuracies: All 0.7739 | Old 0.8196 | New 0.7510
+2024-11-28 17:26:22,779 - INFO - Image classifier Epoch 18 Train Accuracies: All 0.7268 | Old 0.8588 | New 0.6608
+2024-11-28 17:26:27,087 - INFO - Weighted Accuracies: All 0.7791 | Old 0.8549 | New 0.7412
+2024-11-28 17:26:27,781 - INFO - Saved model!
+2024-11-28 17:26:36,498 - INFO - len of image selected samples: 393
+2024-11-28 17:26:36,498 - INFO - len of text selected samples: 373
+2024-11-28 17:26:45,493 - INFO - Epoch 20/200, Total Loss: 6.2972, Base Loss: 2.1070, Con Loss: 1.7324, Pseudo Loss Image: 1.1339, Pseudo Loss Image: 1.1339
+2024-11-28 17:26:45,493 - INFO -    Param Group: classifier_head, Learning Rate: 0.0976
+2024-11-28 17:26:45,493 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:26:49,924 - INFO - Text classifier Epoch 19 Train Accuracies: All 0.7856 | Old 0.8627 | New 0.7471
+2024-11-28 17:26:49,924 - INFO - Image classifier Epoch 19 Train Accuracies: All 0.7647 | Old 0.8588 | New 0.7176
+2024-11-28 17:26:54,283 - INFO - Weighted Accuracies: All 0.8052 | Old 0.8824 | New 0.7667
+2024-11-28 17:26:54,980 - INFO - Saved model!
+2024-11-28 17:27:03,599 - INFO - len of image selected samples: 396
+2024-11-28 17:27:03,599 - INFO - len of text selected samples: 389
+2024-11-28 17:27:12,497 - INFO - Epoch 21/200, Total Loss: 6.1171, Base Loss: 2.1463, Con Loss: 1.7654, Pseudo Loss Image: 1.1136, Pseudo Loss Image: 1.1136
+2024-11-28 17:27:12,497 - INFO -    Param Group: classifier_head, Learning Rate: 0.0973
+2024-11-28 17:27:12,497 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:27:16,956 - INFO - Text classifier Epoch 20 Train Accuracies: All 0.8105 | Old 0.8667 | New 0.7824
+2024-11-28 17:27:16,957 - INFO - Image classifier Epoch 20 Train Accuracies: All 0.8000 | Old 0.8941 | New 0.7529
+2024-11-28 17:27:21,410 - INFO - Weighted Accuracies: All 0.8471 | Old 0.8902 | New 0.8255
+2024-11-28 17:27:22,107 - INFO - Saved model!
+2024-11-28 17:27:30,856 - INFO - len of image selected samples: 402
+2024-11-28 17:27:30,856 - INFO - len of text selected samples: 400
+2024-11-28 17:27:39,410 - INFO - Epoch 22/200, Total Loss: 5.4541, Base Loss: 1.9606, Con Loss: 1.6987, Pseudo Loss Image: 0.8857, Pseudo Loss Image: 0.8857
+2024-11-28 17:27:39,410 - INFO -    Param Group: classifier_head, Learning Rate: 0.0970
+2024-11-28 17:27:39,410 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:27:43,803 - INFO - Text classifier Epoch 21 Train Accuracies: All 0.8235 | Old 0.8863 | New 0.7922
+2024-11-28 17:27:43,803 - INFO - Image classifier Epoch 21 Train Accuracies: All 0.8235 | Old 0.8941 | New 0.7882
+2024-11-28 17:27:48,104 - INFO - Weighted Accuracies: All 0.8549 | Old 0.9255 | New 0.8196
+2024-11-28 17:27:48,800 - INFO - Saved model!
+2024-11-28 17:27:57,408 - INFO - len of image selected samples: 403
+2024-11-28 17:27:57,409 - INFO - len of text selected samples: 401
+2024-11-28 17:28:06,296 - INFO - Epoch 23/200, Total Loss: 5.3291, Base Loss: 1.9454, Con Loss: 1.7402, Pseudo Loss Image: 0.8020, Pseudo Loss Image: 0.8020
+2024-11-28 17:28:06,296 - INFO -    Param Group: classifier_head, Learning Rate: 0.0968
+2024-11-28 17:28:06,296 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:28:10,679 - INFO - Text classifier Epoch 22 Train Accuracies: All 0.8248 | Old 0.9059 | New 0.7843
+2024-11-28 17:28:10,679 - INFO - Image classifier Epoch 22 Train Accuracies: All 0.8471 | Old 0.9020 | New 0.8196
+2024-11-28 17:28:15,059 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9255 | New 0.8412
+2024-11-28 17:28:15,749 - INFO - Saved model!
+2024-11-28 17:28:24,502 - INFO - len of image selected samples: 404
+2024-11-28 17:28:24,502 - INFO - len of text selected samples: 403
+2024-11-28 17:28:33,458 - INFO - Epoch 24/200, Total Loss: 5.2754, Base Loss: 2.0027, Con Loss: 1.7637, Pseudo Loss Image: 0.7851, Pseudo Loss Image: 0.7851
+2024-11-28 17:28:33,458 - INFO -    Param Group: classifier_head, Learning Rate: 0.0965
+2024-11-28 17:28:33,458 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:28:37,772 - INFO - Text classifier Epoch 23 Train Accuracies: All 0.8431 | Old 0.8863 | New 0.8216
+2024-11-28 17:28:37,772 - INFO - Image classifier Epoch 23 Train Accuracies: All 0.8444 | Old 0.9255 | New 0.8039
+2024-11-28 17:28:42,085 - INFO - Weighted Accuracies: All 0.8667 | Old 0.9255 | New 0.8373
+2024-11-28 17:28:50,911 - INFO - len of image selected samples: 404
+2024-11-28 17:28:50,912 - INFO - len of text selected samples: 403
+2024-11-28 17:28:59,906 - INFO - Epoch 25/200, Total Loss: 4.9105, Base Loss: 1.9368, Con Loss: 1.6697, Pseudo Loss Image: 0.6913, Pseudo Loss Image: 0.6913
+2024-11-28 17:28:59,906 - INFO -    Param Group: classifier_head, Learning Rate: 0.0962
+2024-11-28 17:28:59,906 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:29:04,207 - INFO - Text classifier Epoch 24 Train Accuracies: All 0.8641 | Old 0.9098 | New 0.8412
+2024-11-28 17:29:04,207 - INFO - Image classifier Epoch 24 Train Accuracies: All 0.8497 | Old 0.9137 | New 0.8176
+2024-11-28 17:29:08,629 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9412 | New 0.8353
+2024-11-28 17:29:09,323 - INFO - Saved model!
+2024-11-28 17:29:18,012 - INFO - len of image selected samples: 406
+2024-11-28 17:29:18,015 - INFO - len of text selected samples: 405
+2024-11-28 17:29:26,873 - INFO - Epoch 26/200, Total Loss: 4.8590, Base Loss: 1.8671, Con Loss: 1.6876, Pseudo Loss Image: 0.6900, Pseudo Loss Image: 0.6900
+2024-11-28 17:29:26,873 - INFO -    Param Group: classifier_head, Learning Rate: 0.0959
+2024-11-28 17:29:26,873 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:29:31,195 - INFO - Text classifier Epoch 25 Train Accuracies: All 0.8680 | Old 0.9059 | New 0.8490
+2024-11-28 17:29:31,195 - INFO - Image classifier Epoch 25 Train Accuracies: All 0.8588 | Old 0.9216 | New 0.8275
+2024-11-28 17:29:35,524 - INFO - Weighted Accuracies: All 0.8810 | Old 0.9412 | New 0.8510
+2024-11-28 17:29:36,219 - INFO - Saved model!
+2024-11-28 17:29:44,857 - INFO - len of image selected samples: 405
+2024-11-28 17:29:44,857 - INFO - len of text selected samples: 407
+2024-11-28 17:29:53,795 - INFO - Epoch 27/200, Total Loss: 4.5457, Base Loss: 1.8724, Con Loss: 1.7070, Pseudo Loss Image: 0.5225, Pseudo Loss Image: 0.5225
+2024-11-28 17:29:53,795 - INFO -    Param Group: classifier_head, Learning Rate: 0.0956
+2024-11-28 17:29:53,795 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:29:58,212 - INFO - Text classifier Epoch 26 Train Accuracies: All 0.8706 | Old 0.9137 | New 0.8490
+2024-11-28 17:29:58,212 - INFO - Image classifier Epoch 26 Train Accuracies: All 0.8523 | Old 0.9176 | New 0.8196
+2024-11-28 17:30:02,544 - INFO - Weighted Accuracies: All 0.8797 | Old 0.9255 | New 0.8569
+2024-11-28 17:30:11,261 - INFO - len of image selected samples: 404
+2024-11-28 17:30:11,262 - INFO - len of text selected samples: 406
+2024-11-28 17:30:20,292 - INFO - Epoch 28/200, Total Loss: 4.6578, Base Loss: 1.9123, Con Loss: 1.6930, Pseudo Loss Image: 0.5387, Pseudo Loss Image: 0.5387
+2024-11-28 17:30:20,292 - INFO -    Param Group: classifier_head, Learning Rate: 0.0952
+2024-11-28 17:30:20,292 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:30:24,970 - INFO - Text classifier Epoch 27 Train Accuracies: All 0.8588 | Old 0.9020 | New 0.8373
+2024-11-28 17:30:24,971 - INFO - Image classifier Epoch 27 Train Accuracies: All 0.8654 | Old 0.9137 | New 0.8412
+2024-11-28 17:30:29,349 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 17:30:38,170 - INFO - len of image selected samples: 406
+2024-11-28 17:30:38,171 - INFO - len of text selected samples: 406
+2024-11-28 17:30:47,062 - INFO - Epoch 29/200, Total Loss: 4.2001, Base Loss: 1.7487, Con Loss: 1.6396, Pseudo Loss Image: 0.4374, Pseudo Loss Image: 0.4374
+2024-11-28 17:30:47,062 - INFO -    Param Group: classifier_head, Learning Rate: 0.0949
+2024-11-28 17:30:47,062 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:30:51,391 - INFO - Text classifier Epoch 28 Train Accuracies: All 0.8614 | Old 0.9098 | New 0.8373
+2024-11-28 17:30:51,391 - INFO - Image classifier Epoch 28 Train Accuracies: All 0.8614 | Old 0.9216 | New 0.8314
+2024-11-28 17:30:55,717 - INFO - Weighted Accuracies: All 0.8810 | Old 0.9490 | New 0.8471
+2024-11-28 17:31:04,482 - INFO - len of image selected samples: 406
+2024-11-28 17:31:04,482 - INFO - len of text selected samples: 407
+2024-11-28 17:31:13,342 - INFO - Epoch 30/200, Total Loss: 4.4713, Base Loss: 1.8904, Con Loss: 1.6724, Pseudo Loss Image: 0.5063, Pseudo Loss Image: 0.5063
+2024-11-28 17:31:13,342 - INFO -    Param Group: classifier_head, Learning Rate: 0.0946
+2024-11-28 17:31:13,342 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:31:17,735 - INFO - Text classifier Epoch 29 Train Accuracies: All 0.8719 | Old 0.9020 | New 0.8569
+2024-11-28 17:31:17,736 - INFO - Image classifier Epoch 29 Train Accuracies: All 0.8588 | Old 0.9216 | New 0.8275
+2024-11-28 17:31:22,036 - INFO - Weighted Accuracies: All 0.8784 | Old 0.9451 | New 0.8451
+2024-11-28 17:31:30,687 - INFO - len of image selected samples: 406
+2024-11-28 17:31:30,687 - INFO - len of text selected samples: 407
+2024-11-28 17:31:39,676 - INFO - Epoch 31/200, Total Loss: 4.2625, Base Loss: 1.8202, Con Loss: 1.6868, Pseudo Loss Image: 0.4202, Pseudo Loss Image: 0.4202
+2024-11-28 17:31:39,676 - INFO -    Param Group: classifier_head, Learning Rate: 0.0942
+2024-11-28 17:31:39,676 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:31:44,055 - INFO - Text classifier Epoch 30 Train Accuracies: All 0.8680 | Old 0.9020 | New 0.8510
+2024-11-28 17:31:44,055 - INFO - Image classifier Epoch 30 Train Accuracies: All 0.8627 | Old 0.9294 | New 0.8294
+2024-11-28 17:31:48,442 - INFO - Weighted Accuracies: All 0.8797 | Old 0.9451 | New 0.8471
+2024-11-28 17:31:57,448 - INFO - len of image selected samples: 406
+2024-11-28 17:31:57,449 - INFO - len of text selected samples: 407
+2024-11-28 17:32:06,312 - INFO - Epoch 32/200, Total Loss: 4.2084, Base Loss: 1.7981, Con Loss: 1.6210, Pseudo Loss Image: 0.4691, Pseudo Loss Image: 0.4691
+2024-11-28 17:32:06,312 - INFO -    Param Group: classifier_head, Learning Rate: 0.0938
+2024-11-28 17:32:06,312 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:32:10,806 - INFO - Text classifier Epoch 31 Train Accuracies: All 0.8758 | Old 0.9059 | New 0.8608
+2024-11-28 17:32:10,806 - INFO - Image classifier Epoch 31 Train Accuracies: All 0.8654 | Old 0.9255 | New 0.8353
+2024-11-28 17:32:15,145 - INFO - Weighted Accuracies: All 0.8850 | Old 0.9451 | New 0.8549
+2024-11-28 17:32:15,852 - INFO - Saved model!
+2024-11-28 17:32:24,578 - INFO - len of image selected samples: 406
+2024-11-28 17:32:24,578 - INFO - len of text selected samples: 407
+2024-11-28 17:32:33,626 - INFO - Epoch 33/200, Total Loss: 4.1052, Base Loss: 1.7833, Con Loss: 1.6537, Pseudo Loss Image: 0.3888, Pseudo Loss Image: 0.3888
+2024-11-28 17:32:33,626 - INFO -    Param Group: classifier_head, Learning Rate: 0.0934
+2024-11-28 17:32:33,626 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:32:37,994 - INFO - Text classifier Epoch 32 Train Accuracies: All 0.8758 | Old 0.9137 | New 0.8569
+2024-11-28 17:32:37,994 - INFO - Image classifier Epoch 32 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 17:32:42,334 - INFO - Weighted Accuracies: All 0.8810 | Old 0.9451 | New 0.8490
+2024-11-28 17:32:51,050 - INFO - len of image selected samples: 407
+2024-11-28 17:32:51,051 - INFO - len of text selected samples: 407
+2024-11-28 17:32:59,989 - INFO - Epoch 34/200, Total Loss: 4.1027, Base Loss: 1.7877, Con Loss: 1.6375, Pseudo Loss Image: 0.3654, Pseudo Loss Image: 0.3654
+2024-11-28 17:32:59,989 - INFO -    Param Group: classifier_head, Learning Rate: 0.0930
+2024-11-28 17:32:59,989 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:33:04,305 - INFO - Text classifier Epoch 33 Train Accuracies: All 0.8719 | Old 0.9137 | New 0.8510
+2024-11-28 17:33:04,305 - INFO - Image classifier Epoch 33 Train Accuracies: All 0.8641 | Old 0.9137 | New 0.8392
+2024-11-28 17:33:08,735 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9451 | New 0.8392
+2024-11-28 17:33:17,485 - INFO - len of image selected samples: 408
+2024-11-28 17:33:17,485 - INFO - len of text selected samples: 408
+2024-11-28 17:33:26,443 - INFO - Epoch 35/200, Total Loss: 4.1392, Base Loss: 1.8510, Con Loss: 1.6298, Pseudo Loss Image: 0.3742, Pseudo Loss Image: 0.3742
+2024-11-28 17:33:26,443 - INFO -    Param Group: classifier_head, Learning Rate: 0.0926
+2024-11-28 17:33:26,443 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:33:30,770 - INFO - Text classifier Epoch 34 Train Accuracies: All 0.8706 | Old 0.9098 | New 0.8510
+2024-11-28 17:33:30,771 - INFO - Image classifier Epoch 34 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 17:33:35,091 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 17:33:43,715 - INFO - len of image selected samples: 408
+2024-11-28 17:33:43,715 - INFO - len of text selected samples: 408
+2024-11-28 17:33:52,737 - INFO - Epoch 36/200, Total Loss: 4.1696, Base Loss: 1.9131, Con Loss: 1.6454, Pseudo Loss Image: 0.3166, Pseudo Loss Image: 0.3166
+2024-11-28 17:33:52,737 - INFO -    Param Group: classifier_head, Learning Rate: 0.0922
+2024-11-28 17:33:52,737 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:33:57,062 - INFO - Text classifier Epoch 35 Train Accuracies: All 0.8667 | Old 0.9059 | New 0.8471
+2024-11-28 17:33:57,062 - INFO - Image classifier Epoch 35 Train Accuracies: All 0.8654 | Old 0.9255 | New 0.8353
+2024-11-28 17:34:01,500 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9412 | New 0.8353
+2024-11-28 17:34:10,119 - INFO - len of image selected samples: 408
+2024-11-28 17:34:10,119 - INFO - len of text selected samples: 408
+2024-11-28 17:34:19,048 - INFO - Epoch 37/200, Total Loss: 4.0519, Base Loss: 1.8078, Con Loss: 1.6702, Pseudo Loss Image: 0.3260, Pseudo Loss Image: 0.3260
+2024-11-28 17:34:19,048 - INFO -    Param Group: classifier_head, Learning Rate: 0.0918
+2024-11-28 17:34:19,048 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:34:23,352 - INFO - Text classifier Epoch 36 Train Accuracies: All 0.8667 | Old 0.9137 | New 0.8431
+2024-11-28 17:34:23,353 - INFO - Image classifier Epoch 36 Train Accuracies: All 0.8627 | Old 0.9216 | New 0.8333
+2024-11-28 17:34:27,676 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9451 | New 0.8353
+2024-11-28 17:34:36,381 - INFO - len of image selected samples: 408
+2024-11-28 17:34:36,381 - INFO - len of text selected samples: 408
+2024-11-28 17:34:45,250 - INFO - Epoch 38/200, Total Loss: 4.0547, Base Loss: 1.7962, Con Loss: 1.6399, Pseudo Loss Image: 0.2836, Pseudo Loss Image: 0.2836
+2024-11-28 17:34:45,250 - INFO -    Param Group: classifier_head, Learning Rate: 0.0914
+2024-11-28 17:34:45,250 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:34:49,565 - INFO - Text classifier Epoch 37 Train Accuracies: All 0.8745 | Old 0.9216 | New 0.8510
+2024-11-28 17:34:49,566 - INFO - Image classifier Epoch 37 Train Accuracies: All 0.8641 | Old 0.9255 | New 0.8333
+2024-11-28 17:34:53,939 - INFO - Weighted Accuracies: All 0.8784 | Old 0.9451 | New 0.8451
+2024-11-28 17:35:02,742 - INFO - len of image selected samples: 408
+2024-11-28 17:35:02,742 - INFO - len of text selected samples: 407
+2024-11-28 17:35:11,615 - INFO - Epoch 39/200, Total Loss: 4.0976, Base Loss: 1.8545, Con Loss: 1.6485, Pseudo Loss Image: 0.3220, Pseudo Loss Image: 0.3220
+2024-11-28 17:35:11,615 - INFO -    Param Group: classifier_head, Learning Rate: 0.0909
+2024-11-28 17:35:11,615 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:35:16,014 - INFO - Text classifier Epoch 38 Train Accuracies: All 0.8693 | Old 0.9412 | New 0.8333
+2024-11-28 17:35:16,015 - INFO - Image classifier Epoch 38 Train Accuracies: All 0.8680 | Old 0.9176 | New 0.8431
+2024-11-28 17:35:20,361 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9451 | New 0.8412
+2024-11-28 17:35:29,357 - INFO - len of image selected samples: 408
+2024-11-28 17:35:29,357 - INFO - len of text selected samples: 408
+2024-11-28 17:35:38,279 - INFO - Epoch 40/200, Total Loss: 4.0273, Base Loss: 1.8433, Con Loss: 1.5922, Pseudo Loss Image: 0.2809, Pseudo Loss Image: 0.2809
+2024-11-28 17:35:38,279 - INFO -    Param Group: classifier_head, Learning Rate: 0.0905
+2024-11-28 17:35:38,279 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:35:42,630 - INFO - Text classifier Epoch 39 Train Accuracies: All 0.8549 | Old 0.9216 | New 0.8216
+2024-11-28 17:35:42,630 - INFO - Image classifier Epoch 39 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 17:35:46,982 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9451 | New 0.8333
+2024-11-28 17:35:55,624 - INFO - len of image selected samples: 408
+2024-11-28 17:35:55,624 - INFO - len of text selected samples: 408
+2024-11-28 17:36:04,290 - INFO - Epoch 41/200, Total Loss: 3.9483, Base Loss: 1.8417, Con Loss: 1.5633, Pseudo Loss Image: 0.2914, Pseudo Loss Image: 0.2914
+2024-11-28 17:36:04,290 - INFO -    Param Group: classifier_head, Learning Rate: 0.0900
+2024-11-28 17:36:04,290 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:36:08,595 - INFO - Text classifier Epoch 40 Train Accuracies: All 0.8680 | Old 0.9333 | New 0.8353
+2024-11-28 17:36:08,595 - INFO - Image classifier Epoch 40 Train Accuracies: All 0.8523 | Old 0.9216 | New 0.8176
+2024-11-28 17:36:13,017 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9451 | New 0.8314
+2024-11-28 17:36:21,699 - INFO - len of image selected samples: 408
+2024-11-28 17:36:21,700 - INFO - len of text selected samples: 408
+2024-11-28 17:36:30,705 - INFO - Epoch 42/200, Total Loss: 3.9232, Base Loss: 1.8046, Con Loss: 1.6083, Pseudo Loss Image: 0.2662, Pseudo Loss Image: 0.2662
+2024-11-28 17:36:30,705 - INFO -    Param Group: classifier_head, Learning Rate: 0.0895
+2024-11-28 17:36:30,705 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:36:35,029 - INFO - Text classifier Epoch 41 Train Accuracies: All 0.8627 | Old 0.9333 | New 0.8275
+2024-11-28 17:36:35,030 - INFO - Image classifier Epoch 41 Train Accuracies: All 0.8523 | Old 0.9059 | New 0.8255
+2024-11-28 17:36:39,396 - INFO - Weighted Accuracies: All 0.8680 | Old 0.9451 | New 0.8294
+2024-11-28 17:36:48,193 - INFO - len of image selected samples: 408
+2024-11-28 17:36:48,193 - INFO - len of text selected samples: 408
+2024-11-28 17:36:57,066 - INFO - Epoch 43/200, Total Loss: 3.9226, Base Loss: 1.8051, Con Loss: 1.6213, Pseudo Loss Image: 0.2615, Pseudo Loss Image: 0.2615
+2024-11-28 17:36:57,066 - INFO -    Param Group: classifier_head, Learning Rate: 0.0890
+2024-11-28 17:36:57,066 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:37:01,437 - INFO - Text classifier Epoch 42 Train Accuracies: All 0.8641 | Old 0.9294 | New 0.8314
+2024-11-28 17:37:01,437 - INFO - Image classifier Epoch 42 Train Accuracies: All 0.8601 | Old 0.9176 | New 0.8314
+2024-11-28 17:37:05,785 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9412 | New 0.8333
+2024-11-28 17:37:14,431 - INFO - len of image selected samples: 408
+2024-11-28 17:37:14,432 - INFO - len of text selected samples: 408
+2024-11-28 17:37:23,256 - INFO - Epoch 44/200, Total Loss: 3.8181, Base Loss: 1.7935, Con Loss: 1.5695, Pseudo Loss Image: 0.2409, Pseudo Loss Image: 0.2409
+2024-11-28 17:37:23,256 - INFO -    Param Group: classifier_head, Learning Rate: 0.0885
+2024-11-28 17:37:23,256 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:37:27,566 - INFO - Text classifier Epoch 43 Train Accuracies: All 0.8654 | Old 0.9333 | New 0.8314
+2024-11-28 17:37:27,566 - INFO - Image classifier Epoch 43 Train Accuracies: All 0.8549 | Old 0.9176 | New 0.8235
+2024-11-28 17:37:31,873 - INFO - Weighted Accuracies: All 0.8680 | Old 0.9412 | New 0.8314
+2024-11-28 17:37:40,644 - INFO - len of image selected samples: 407
+2024-11-28 17:37:40,644 - INFO - len of text selected samples: 408
+2024-11-28 17:37:49,619 - INFO - Epoch 45/200, Total Loss: 3.7496, Base Loss: 1.7641, Con Loss: 1.5537, Pseudo Loss Image: 0.2340, Pseudo Loss Image: 0.2340
+2024-11-28 17:37:49,619 - INFO -    Param Group: classifier_head, Learning Rate: 0.0880
+2024-11-28 17:37:49,619 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:37:54,063 - INFO - Text classifier Epoch 44 Train Accuracies: All 0.8588 | Old 0.9333 | New 0.8216
+2024-11-28 17:37:54,063 - INFO - Image classifier Epoch 44 Train Accuracies: All 0.8575 | Old 0.9176 | New 0.8275
+2024-11-28 17:37:58,390 - INFO - Weighted Accuracies: All 0.8627 | Old 0.9373 | New 0.8255
+2024-11-28 17:38:07,118 - INFO - len of image selected samples: 408
+2024-11-28 17:38:07,118 - INFO - len of text selected samples: 408
+2024-11-28 17:38:15,498 - INFO - Epoch 46/200, Total Loss: 3.8685, Base Loss: 1.8823, Con Loss: 1.5585, Pseudo Loss Image: 0.2314, Pseudo Loss Image: 0.2314
+2024-11-28 17:38:15,499 - INFO -    Param Group: classifier_head, Learning Rate: 0.0875
+2024-11-28 17:38:15,499 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:38:19,806 - INFO - Text classifier Epoch 45 Train Accuracies: All 0.8588 | Old 0.9333 | New 0.8216
+2024-11-28 17:38:19,806 - INFO - Image classifier Epoch 45 Train Accuracies: All 0.8588 | Old 0.9176 | New 0.8294
+2024-11-28 17:38:24,118 - INFO - Weighted Accuracies: All 0.8654 | Old 0.9451 | New 0.8255
+2024-11-28 17:38:33,034 - INFO - len of image selected samples: 408
+2024-11-28 17:38:33,034 - INFO - len of text selected samples: 408
+2024-11-28 17:38:41,979 - INFO - Epoch 47/200, Total Loss: 3.7808, Base Loss: 1.7683, Con Loss: 1.5551, Pseudo Loss Image: 0.2025, Pseudo Loss Image: 0.2025
+2024-11-28 17:38:41,979 - INFO -    Param Group: classifier_head, Learning Rate: 0.0870
+2024-11-28 17:38:41,979 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:38:46,544 - INFO - Text classifier Epoch 46 Train Accuracies: All 0.8627 | Old 0.9333 | New 0.8275
+2024-11-28 17:38:46,544 - INFO - Image classifier Epoch 46 Train Accuracies: All 0.8601 | Old 0.9216 | New 0.8294
+2024-11-28 17:38:51,042 - INFO - Weighted Accuracies: All 0.8627 | Old 0.9412 | New 0.8235
+2024-11-28 17:38:59,826 - INFO - len of image selected samples: 408
+2024-11-28 17:38:59,827 - INFO - len of text selected samples: 408
+2024-11-28 17:39:08,747 - INFO - Epoch 48/200, Total Loss: 3.7940, Base Loss: 1.8626, Con Loss: 1.5315, Pseudo Loss Image: 0.2011, Pseudo Loss Image: 0.2011
+2024-11-28 17:39:08,747 - INFO -    Param Group: classifier_head, Learning Rate: 0.0865
+2024-11-28 17:39:08,748 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:39:13,054 - INFO - Text classifier Epoch 47 Train Accuracies: All 0.8680 | Old 0.9373 | New 0.8333
+2024-11-28 17:39:13,054 - INFO - Image classifier Epoch 47 Train Accuracies: All 0.8588 | Old 0.9059 | New 0.8353
+2024-11-28 17:39:17,337 - INFO - Weighted Accuracies: All 0.8641 | Old 0.9412 | New 0.8255
+2024-11-28 17:39:25,993 - INFO - len of image selected samples: 408
+2024-11-28 17:39:25,993 - INFO - len of text selected samples: 408
+2024-11-28 17:39:34,806 - INFO - Epoch 49/200, Total Loss: 3.7124, Base Loss: 1.7548, Con Loss: 1.5411, Pseudo Loss Image: 0.2142, Pseudo Loss Image: 0.2142
+2024-11-28 17:39:34,807 - INFO -    Param Group: classifier_head, Learning Rate: 0.0859
+2024-11-28 17:39:34,807 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:39:39,165 - INFO - Text classifier Epoch 48 Train Accuracies: All 0.8654 | Old 0.9373 | New 0.8294
+2024-11-28 17:39:39,165 - INFO - Image classifier Epoch 48 Train Accuracies: All 0.8562 | Old 0.9176 | New 0.8255
+2024-11-28 17:39:43,490 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9451 | New 0.8314
+2024-11-28 17:39:52,084 - INFO - len of image selected samples: 408
+2024-11-28 17:39:52,084 - INFO - len of text selected samples: 408
+2024-11-28 17:40:00,942 - INFO - Epoch 50/200, Total Loss: 3.6927, Base Loss: 1.7601, Con Loss: 1.4691, Pseudo Loss Image: 0.2300, Pseudo Loss Image: 0.2300
+2024-11-28 17:40:00,942 - INFO -    Param Group: classifier_head, Learning Rate: 0.0854
+2024-11-28 17:40:00,942 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:40:05,244 - INFO - Text classifier Epoch 49 Train Accuracies: All 0.8667 | Old 0.9373 | New 0.8314
+2024-11-28 17:40:05,245 - INFO - Image classifier Epoch 49 Train Accuracies: All 0.8562 | Old 0.9216 | New 0.8235
+2024-11-28 17:40:09,552 - INFO - Weighted Accuracies: All 0.8680 | Old 0.9373 | New 0.8333
+2024-11-28 17:40:18,299 - INFO - len of image selected samples: 408
+2024-11-28 17:40:18,299 - INFO - len of text selected samples: 408
+2024-11-28 17:40:27,322 - INFO - Epoch 51/200, Total Loss: 3.6199, Base Loss: 1.7230, Con Loss: 1.5120, Pseudo Loss Image: 0.2048, Pseudo Loss Image: 0.2048
+2024-11-28 17:40:27,323 - INFO -    Param Group: classifier_head, Learning Rate: 0.0848
+2024-11-28 17:40:27,323 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:40:31,664 - INFO - Text classifier Epoch 50 Train Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 17:40:31,664 - INFO - Image classifier Epoch 50 Train Accuracies: All 0.8601 | Old 0.9216 | New 0.8294
+2024-11-28 17:40:36,021 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9451 | New 0.8314
+2024-11-28 17:40:44,759 - INFO - len of image selected samples: 408
+2024-11-28 17:40:44,759 - INFO - len of text selected samples: 408
+2024-11-28 17:40:53,681 - INFO - Epoch 52/200, Total Loss: 3.7043, Base Loss: 1.8162, Con Loss: 1.5220, Pseudo Loss Image: 0.1917, Pseudo Loss Image: 0.1917
+2024-11-28 17:40:53,681 - INFO -    Param Group: classifier_head, Learning Rate: 0.0842
+2024-11-28 17:40:53,681 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:40:58,057 - INFO - Text classifier Epoch 51 Train Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 17:40:58,058 - INFO - Image classifier Epoch 51 Train Accuracies: All 0.8523 | Old 0.9176 | New 0.8196
+2024-11-28 17:41:02,381 - INFO - Weighted Accuracies: All 0.8654 | Old 0.9412 | New 0.8275
+2024-11-28 17:41:11,015 - INFO - len of image selected samples: 408
+2024-11-28 17:41:11,016 - INFO - len of text selected samples: 408
+2024-11-28 17:41:19,894 - INFO - Epoch 53/200, Total Loss: 3.6054, Base Loss: 1.7249, Con Loss: 1.4929, Pseudo Loss Image: 0.1961, Pseudo Loss Image: 0.1961
+2024-11-28 17:41:19,894 - INFO -    Param Group: classifier_head, Learning Rate: 0.0837
+2024-11-28 17:41:19,894 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:41:24,204 - INFO - Text classifier Epoch 52 Train Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 17:41:24,205 - INFO - Image classifier Epoch 52 Train Accuracies: All 0.8562 | Old 0.9176 | New 0.8255
+2024-11-28 17:41:28,517 - INFO - Weighted Accuracies: All 0.8680 | Old 0.9412 | New 0.8314
+2024-11-28 17:41:37,304 - INFO - len of image selected samples: 408
+2024-11-28 17:41:37,304 - INFO - len of text selected samples: 408
+2024-11-28 17:41:46,025 - INFO - Epoch 54/200, Total Loss: 3.5789, Base Loss: 1.7181, Con Loss: 1.4997, Pseudo Loss Image: 0.1932, Pseudo Loss Image: 0.1932
+2024-11-28 17:41:46,025 - INFO -    Param Group: classifier_head, Learning Rate: 0.0831
+2024-11-28 17:41:46,025 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:41:50,435 - INFO - Text classifier Epoch 53 Train Accuracies: All 0.8758 | Old 0.9333 | New 0.8471
+2024-11-28 17:41:50,435 - INFO - Image classifier Epoch 53 Train Accuracies: All 0.8549 | Old 0.9176 | New 0.8235
+2024-11-28 17:41:54,767 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9373 | New 0.8353
+2024-11-28 17:42:03,533 - INFO - len of image selected samples: 408
+2024-11-28 17:42:03,533 - INFO - len of text selected samples: 408
+2024-11-28 17:42:12,512 - INFO - Epoch 55/200, Total Loss: 3.7105, Base Loss: 1.8426, Con Loss: 1.5082, Pseudo Loss Image: 0.2053, Pseudo Loss Image: 0.2053
+2024-11-28 17:42:12,512 - INFO -    Param Group: classifier_head, Learning Rate: 0.0825
+2024-11-28 17:42:12,512 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:42:17,168 - INFO - Text classifier Epoch 54 Train Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 17:42:17,169 - INFO - Image classifier Epoch 54 Train Accuracies: All 0.8588 | Old 0.9176 | New 0.8294
+2024-11-28 17:42:21,652 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9373 | New 0.8353
+2024-11-28 17:42:30,718 - INFO - len of image selected samples: 408
+2024-11-28 17:42:30,718 - INFO - len of text selected samples: 408
+2024-11-28 17:42:39,606 - INFO - Epoch 56/200, Total Loss: 3.5584, Base Loss: 1.7802, Con Loss: 1.4870, Pseudo Loss Image: 0.1544, Pseudo Loss Image: 0.1544
+2024-11-28 17:42:39,606 - INFO -    Param Group: classifier_head, Learning Rate: 0.0819
+2024-11-28 17:42:39,606 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:42:43,965 - INFO - Text classifier Epoch 55 Train Accuracies: All 0.8771 | Old 0.9412 | New 0.8451
+2024-11-28 17:42:43,965 - INFO - Image classifier Epoch 55 Train Accuracies: All 0.8588 | Old 0.9176 | New 0.8294
+2024-11-28 17:42:48,279 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 17:42:56,998 - INFO - len of image selected samples: 408
+2024-11-28 17:42:56,998 - INFO - len of text selected samples: 408
+2024-11-28 17:43:06,014 - INFO - Epoch 57/200, Total Loss: 3.6181, Base Loss: 1.7586, Con Loss: 1.5287, Pseudo Loss Image: 0.1606, Pseudo Loss Image: 0.1606
+2024-11-28 17:43:06,014 - INFO -    Param Group: classifier_head, Learning Rate: 0.0813
+2024-11-28 17:43:06,014 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:43:10,326 - INFO - Text classifier Epoch 56 Train Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 17:43:10,326 - INFO - Image classifier Epoch 56 Train Accuracies: All 0.8575 | Old 0.9176 | New 0.8275
+2024-11-28 17:43:14,704 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9412 | New 0.8333
+2024-11-28 17:43:23,431 - INFO - len of image selected samples: 408
+2024-11-28 17:43:23,431 - INFO - len of text selected samples: 408
+2024-11-28 17:43:32,378 - INFO - Epoch 58/200, Total Loss: 3.5638, Base Loss: 1.7769, Con Loss: 1.4763, Pseudo Loss Image: 0.1538, Pseudo Loss Image: 0.1538
+2024-11-28 17:43:32,378 - INFO -    Param Group: classifier_head, Learning Rate: 0.0807
+2024-11-28 17:43:32,378 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:43:36,751 - INFO - Text classifier Epoch 57 Train Accuracies: All 0.8641 | Old 0.9333 | New 0.8294
+2024-11-28 17:43:36,752 - INFO - Image classifier Epoch 57 Train Accuracies: All 0.8641 | Old 0.9137 | New 0.8392
+2024-11-28 17:43:41,087 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9451 | New 0.8412
+2024-11-28 17:43:49,777 - INFO - len of image selected samples: 408
+2024-11-28 17:43:49,778 - INFO - len of text selected samples: 408
+2024-11-28 17:43:58,389 - INFO - Epoch 59/200, Total Loss: 3.5714, Base Loss: 1.7932, Con Loss: 1.4350, Pseudo Loss Image: 0.1536, Pseudo Loss Image: 0.1536
+2024-11-28 17:43:58,389 - INFO -    Param Group: classifier_head, Learning Rate: 0.0800
+2024-11-28 17:43:58,389 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:44:02,784 - INFO - Text classifier Epoch 58 Train Accuracies: All 0.8667 | Old 0.9333 | New 0.8333
+2024-11-28 17:44:02,784 - INFO - Image classifier Epoch 58 Train Accuracies: All 0.8693 | Old 0.9137 | New 0.8471
+2024-11-28 17:44:07,166 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 17:44:15,868 - INFO - len of image selected samples: 408
+2024-11-28 17:44:15,868 - INFO - len of text selected samples: 408
+2024-11-28 17:44:24,671 - INFO - Epoch 60/200, Total Loss: 3.6997, Base Loss: 1.8819, Con Loss: 1.4952, Pseudo Loss Image: 0.1589, Pseudo Loss Image: 0.1589
+2024-11-28 17:44:24,671 - INFO -    Param Group: classifier_head, Learning Rate: 0.0794
+2024-11-28 17:44:24,671 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:44:29,047 - INFO - Text classifier Epoch 59 Train Accuracies: All 0.8667 | Old 0.9294 | New 0.8353
+2024-11-28 17:44:29,047 - INFO - Image classifier Epoch 59 Train Accuracies: All 0.8588 | Old 0.9098 | New 0.8333
+2024-11-28 17:44:33,431 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9333 | New 0.8373
+2024-11-28 17:44:42,112 - INFO - len of image selected samples: 408
+2024-11-28 17:44:42,112 - INFO - len of text selected samples: 408
+2024-11-28 17:44:51,080 - INFO - Epoch 61/200, Total Loss: 3.6091, Base Loss: 1.8398, Con Loss: 1.4711, Pseudo Loss Image: 0.1774, Pseudo Loss Image: 0.1774
+2024-11-28 17:44:51,080 - INFO -    Param Group: classifier_head, Learning Rate: 0.0788
+2024-11-28 17:44:51,080 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:44:55,536 - INFO - Text classifier Epoch 60 Train Accuracies: All 0.8693 | Old 0.9255 | New 0.8412
+2024-11-28 17:44:55,537 - INFO - Image classifier Epoch 60 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 17:44:59,910 - INFO - Weighted Accuracies: All 0.8654 | Old 0.9373 | New 0.8294
+2024-11-28 17:45:08,738 - INFO - len of image selected samples: 408
+2024-11-28 17:45:08,738 - INFO - len of text selected samples: 408
+2024-11-28 17:45:17,626 - INFO - Epoch 62/200, Total Loss: 3.6508, Base Loss: 1.8200, Con Loss: 1.4795, Pseudo Loss Image: 0.1771, Pseudo Loss Image: 0.1771
+2024-11-28 17:45:17,626 - INFO -    Param Group: classifier_head, Learning Rate: 0.0781
+2024-11-28 17:45:17,626 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:45:21,935 - INFO - Text classifier Epoch 61 Train Accuracies: All 0.8719 | Old 0.9098 | New 0.8529
+2024-11-28 17:45:21,935 - INFO - Image classifier Epoch 61 Train Accuracies: All 0.8627 | Old 0.9137 | New 0.8373
+2024-11-28 17:45:26,238 - INFO - Weighted Accuracies: All 0.8667 | Old 0.9373 | New 0.8314
+2024-11-28 17:45:34,826 - INFO - len of image selected samples: 408
+2024-11-28 17:45:34,827 - INFO - len of text selected samples: 408
+2024-11-28 17:45:43,395 - INFO - Epoch 63/200, Total Loss: 3.4647, Base Loss: 1.7058, Con Loss: 1.4685, Pseudo Loss Image: 0.1553, Pseudo Loss Image: 0.1553
+2024-11-28 17:45:43,395 - INFO -    Param Group: classifier_head, Learning Rate: 0.0775
+2024-11-28 17:45:43,395 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:45:47,704 - INFO - Text classifier Epoch 62 Train Accuracies: All 0.8641 | Old 0.9255 | New 0.8333
+2024-11-28 17:45:47,704 - INFO - Image classifier Epoch 62 Train Accuracies: All 0.8641 | Old 0.9176 | New 0.8373
+2024-11-28 17:45:52,065 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9412 | New 0.8353
+2024-11-28 17:46:00,649 - INFO - len of image selected samples: 408
+2024-11-28 17:46:00,649 - INFO - len of text selected samples: 408
+2024-11-28 17:46:09,538 - INFO - Epoch 64/200, Total Loss: 3.4047, Base Loss: 1.6687, Con Loss: 1.4120, Pseudo Loss Image: 0.1672, Pseudo Loss Image: 0.1672
+2024-11-28 17:46:09,538 - INFO -    Param Group: classifier_head, Learning Rate: 0.0768
+2024-11-28 17:46:09,538 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:46:13,865 - INFO - Text classifier Epoch 63 Train Accuracies: All 0.8719 | Old 0.9255 | New 0.8451
+2024-11-28 17:46:13,865 - INFO - Image classifier Epoch 63 Train Accuracies: All 0.8614 | Old 0.9137 | New 0.8353
+2024-11-28 17:46:18,177 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 17:46:26,951 - INFO - len of image selected samples: 408
+2024-11-28 17:46:26,951 - INFO - len of text selected samples: 408
+2024-11-28 17:46:35,699 - INFO - Epoch 65/200, Total Loss: 3.4593, Base Loss: 1.7149, Con Loss: 1.4683, Pseudo Loss Image: 0.1504, Pseudo Loss Image: 0.1504
+2024-11-28 17:46:35,699 - INFO -    Param Group: classifier_head, Learning Rate: 0.0761
+2024-11-28 17:46:35,699 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:46:40,291 - INFO - Text classifier Epoch 64 Train Accuracies: All 0.8680 | Old 0.9216 | New 0.8412
+2024-11-28 17:46:40,291 - INFO - Image classifier Epoch 64 Train Accuracies: All 0.8627 | Old 0.9137 | New 0.8373
+2024-11-28 17:46:44,651 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 17:46:53,309 - INFO - len of image selected samples: 408
+2024-11-28 17:46:53,310 - INFO - len of text selected samples: 408
+2024-11-28 17:47:02,265 - INFO - Epoch 66/200, Total Loss: 3.4583, Base Loss: 1.7222, Con Loss: 1.4235, Pseudo Loss Image: 0.1522, Pseudo Loss Image: 0.1522
+2024-11-28 17:47:02,265 - INFO -    Param Group: classifier_head, Learning Rate: 0.0755
+2024-11-28 17:47:02,265 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:47:06,578 - INFO - Text classifier Epoch 65 Train Accuracies: All 0.8680 | Old 0.9216 | New 0.8412
+2024-11-28 17:47:06,578 - INFO - Image classifier Epoch 65 Train Accuracies: All 0.8588 | Old 0.9137 | New 0.8314
+2024-11-28 17:47:10,873 - INFO - Weighted Accuracies: All 0.8680 | Old 0.9333 | New 0.8353
+2024-11-28 17:47:19,463 - INFO - len of image selected samples: 408
+2024-11-28 17:47:19,463 - INFO - len of text selected samples: 408
+2024-11-28 17:47:28,283 - INFO - Epoch 67/200, Total Loss: 3.6122, Base Loss: 1.8499, Con Loss: 1.4759, Pseudo Loss Image: 0.1582, Pseudo Loss Image: 0.1582
+2024-11-28 17:47:28,284 - INFO -    Param Group: classifier_head, Learning Rate: 0.0748
+2024-11-28 17:47:28,284 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:47:32,641 - INFO - Text classifier Epoch 66 Train Accuracies: All 0.8654 | Old 0.9176 | New 0.8392
+2024-11-28 17:47:32,642 - INFO - Image classifier Epoch 66 Train Accuracies: All 0.8588 | Old 0.9137 | New 0.8314
+2024-11-28 17:47:37,006 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9373 | New 0.8353
+2024-11-28 17:47:45,743 - INFO - len of image selected samples: 408
+2024-11-28 17:47:45,743 - INFO - len of text selected samples: 408
+2024-11-28 17:47:54,563 - INFO - Epoch 68/200, Total Loss: 3.3564, Base Loss: 1.6857, Con Loss: 1.4217, Pseudo Loss Image: 0.1289, Pseudo Loss Image: 0.1289
+2024-11-28 17:47:54,563 - INFO -    Param Group: classifier_head, Learning Rate: 0.0741
+2024-11-28 17:47:54,563 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:47:58,892 - INFO - Text classifier Epoch 67 Train Accuracies: All 0.8680 | Old 0.9216 | New 0.8412
+2024-11-28 17:47:58,892 - INFO - Image classifier Epoch 67 Train Accuracies: All 0.8614 | Old 0.9137 | New 0.8353
+2024-11-28 17:48:03,310 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 17:48:12,105 - INFO - len of image selected samples: 408
+2024-11-28 17:48:12,105 - INFO - len of text selected samples: 408
+2024-11-28 17:48:21,118 - INFO - Epoch 69/200, Total Loss: 3.4775, Base Loss: 1.7790, Con Loss: 1.4378, Pseudo Loss Image: 0.1488, Pseudo Loss Image: 0.1488
+2024-11-28 17:48:21,119 - INFO -    Param Group: classifier_head, Learning Rate: 0.0734
+2024-11-28 17:48:21,119 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:48:25,459 - INFO - Text classifier Epoch 68 Train Accuracies: All 0.8667 | Old 0.9216 | New 0.8392
+2024-11-28 17:48:25,459 - INFO - Image classifier Epoch 68 Train Accuracies: All 0.8627 | Old 0.9137 | New 0.8373
+2024-11-28 17:48:29,784 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 17:48:38,513 - INFO - len of image selected samples: 408
+2024-11-28 17:48:38,514 - INFO - len of text selected samples: 408
+2024-11-28 17:48:47,219 - INFO - Epoch 70/200, Total Loss: 3.4276, Base Loss: 1.6734, Con Loss: 1.4645, Pseudo Loss Image: 0.1358, Pseudo Loss Image: 0.1358
+2024-11-28 17:48:47,219 - INFO -    Param Group: classifier_head, Learning Rate: 0.0727
+2024-11-28 17:48:47,219 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:48:51,548 - INFO - Text classifier Epoch 69 Train Accuracies: All 0.8693 | Old 0.9255 | New 0.8412
+2024-11-28 17:48:51,549 - INFO - Image classifier Epoch 69 Train Accuracies: All 0.8601 | Old 0.9137 | New 0.8333
+2024-11-28 17:48:55,894 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 17:49:04,504 - INFO - len of image selected samples: 408
+2024-11-28 17:49:04,504 - INFO - len of text selected samples: 408
+2024-11-28 17:49:13,246 - INFO - Epoch 71/200, Total Loss: 3.3814, Base Loss: 1.6599, Con Loss: 1.4418, Pseudo Loss Image: 0.1397, Pseudo Loss Image: 0.1397
+2024-11-28 17:49:13,246 - INFO -    Param Group: classifier_head, Learning Rate: 0.0720
+2024-11-28 17:49:13,246 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:49:17,530 - INFO - Text classifier Epoch 70 Train Accuracies: All 0.8667 | Old 0.9255 | New 0.8373
+2024-11-28 17:49:17,530 - INFO - Image classifier Epoch 70 Train Accuracies: All 0.8601 | Old 0.9137 | New 0.8333
+2024-11-28 17:49:21,833 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9412 | New 0.8373
+2024-11-28 17:49:30,551 - INFO - len of image selected samples: 408
+2024-11-28 17:49:30,551 - INFO - len of text selected samples: 408
+2024-11-28 17:49:39,452 - INFO - Epoch 72/200, Total Loss: 3.4071, Base Loss: 1.7095, Con Loss: 1.4346, Pseudo Loss Image: 0.1216, Pseudo Loss Image: 0.1216
+2024-11-28 17:49:39,452 - INFO -    Param Group: classifier_head, Learning Rate: 0.0713
+2024-11-28 17:49:39,452 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:49:43,808 - INFO - Text classifier Epoch 71 Train Accuracies: All 0.8706 | Old 0.9333 | New 0.8392
+2024-11-28 17:49:43,808 - INFO - Image classifier Epoch 71 Train Accuracies: All 0.8641 | Old 0.9137 | New 0.8392
+2024-11-28 17:49:48,291 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9412 | New 0.8353
+2024-11-28 17:49:57,029 - INFO - len of image selected samples: 408
+2024-11-28 17:49:57,030 - INFO - len of text selected samples: 408
+2024-11-28 17:50:05,951 - INFO - Epoch 73/200, Total Loss: 3.5024, Base Loss: 1.8161, Con Loss: 1.4135, Pseudo Loss Image: 0.1318, Pseudo Loss Image: 0.1318
+2024-11-28 17:50:05,951 - INFO -    Param Group: classifier_head, Learning Rate: 0.0706
+2024-11-28 17:50:05,951 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:50:10,357 - INFO - Text classifier Epoch 72 Train Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 17:50:10,357 - INFO - Image classifier Epoch 72 Train Accuracies: All 0.8627 | Old 0.9137 | New 0.8373
+2024-11-28 17:50:14,711 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9412 | New 0.8353
+2024-11-28 17:50:23,560 - INFO - len of image selected samples: 408
+2024-11-28 17:50:23,561 - INFO - len of text selected samples: 408
+2024-11-28 17:50:32,549 - INFO - Epoch 74/200, Total Loss: 3.3475, Base Loss: 1.6711, Con Loss: 1.4068, Pseudo Loss Image: 0.1279, Pseudo Loss Image: 0.1279
+2024-11-28 17:50:32,549 - INFO -    Param Group: classifier_head, Learning Rate: 0.0699
+2024-11-28 17:50:32,549 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:50:36,958 - INFO - Text classifier Epoch 73 Train Accuracies: All 0.8667 | Old 0.9255 | New 0.8373
+2024-11-28 17:50:36,958 - INFO - Image classifier Epoch 73 Train Accuracies: All 0.8667 | Old 0.9137 | New 0.8431
+2024-11-28 17:50:41,297 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9373 | New 0.8353
+2024-11-28 17:50:49,930 - INFO - len of image selected samples: 408
+2024-11-28 17:50:49,930 - INFO - len of text selected samples: 408
+2024-11-28 17:50:58,954 - INFO - Epoch 75/200, Total Loss: 3.3406, Base Loss: 1.6958, Con Loss: 1.4265, Pseudo Loss Image: 0.1131, Pseudo Loss Image: 0.1131
+2024-11-28 17:50:58,955 - INFO -    Param Group: classifier_head, Learning Rate: 0.0692
+2024-11-28 17:50:58,955 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:51:03,283 - INFO - Text classifier Epoch 74 Train Accuracies: All 0.8732 | Old 0.9216 | New 0.8490
+2024-11-28 17:51:03,283 - INFO - Image classifier Epoch 74 Train Accuracies: All 0.8614 | Old 0.9098 | New 0.8373
+2024-11-28 17:51:07,561 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9333 | New 0.8373
+2024-11-28 17:51:16,354 - INFO - len of image selected samples: 408
+2024-11-28 17:51:16,354 - INFO - len of text selected samples: 408
+2024-11-28 17:51:24,976 - INFO - Epoch 76/200, Total Loss: 3.5057, Base Loss: 1.8312, Con Loss: 1.4366, Pseudo Loss Image: 0.1054, Pseudo Loss Image: 0.1054
+2024-11-28 17:51:24,976 - INFO -    Param Group: classifier_head, Learning Rate: 0.0684
+2024-11-28 17:51:24,977 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:51:29,302 - INFO - Text classifier Epoch 75 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 17:51:29,302 - INFO - Image classifier Epoch 75 Train Accuracies: All 0.8641 | Old 0.9137 | New 0.8392
+2024-11-28 17:51:33,611 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9333 | New 0.8373
+2024-11-28 17:51:42,434 - INFO - len of image selected samples: 408
+2024-11-28 17:51:42,435 - INFO - len of text selected samples: 408
+2024-11-28 17:51:51,379 - INFO - Epoch 77/200, Total Loss: 3.4283, Base Loss: 1.7334, Con Loss: 1.4469, Pseudo Loss Image: 0.1251, Pseudo Loss Image: 0.1251
+2024-11-28 17:51:51,379 - INFO -    Param Group: classifier_head, Learning Rate: 0.0677
+2024-11-28 17:51:51,379 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:51:55,776 - INFO - Text classifier Epoch 76 Train Accuracies: All 0.8706 | Old 0.9255 | New 0.8431
+2024-11-28 17:51:55,776 - INFO - Image classifier Epoch 76 Train Accuracies: All 0.8680 | Old 0.9137 | New 0.8451
+2024-11-28 17:52:00,129 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 17:52:08,900 - INFO - len of image selected samples: 408
+2024-11-28 17:52:08,900 - INFO - len of text selected samples: 408
+2024-11-28 17:52:17,694 - INFO - Epoch 78/200, Total Loss: 3.2215, Base Loss: 1.6430, Con Loss: 1.3718, Pseudo Loss Image: 0.1112, Pseudo Loss Image: 0.1112
+2024-11-28 17:52:17,694 - INFO -    Param Group: classifier_head, Learning Rate: 0.0670
+2024-11-28 17:52:17,694 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:52:22,022 - INFO - Text classifier Epoch 77 Train Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 17:52:22,022 - INFO - Image classifier Epoch 77 Train Accuracies: All 0.8667 | Old 0.9176 | New 0.8412
+2024-11-28 17:52:26,593 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9333 | New 0.8392
+2024-11-28 17:52:35,848 - INFO - len of image selected samples: 408
+2024-11-28 17:52:35,849 - INFO - len of text selected samples: 408
+2024-11-28 17:52:44,828 - INFO - Epoch 79/200, Total Loss: 3.5267, Base Loss: 1.8119, Con Loss: 1.4212, Pseudo Loss Image: 0.1640, Pseudo Loss Image: 0.1640
+2024-11-28 17:52:44,828 - INFO -    Param Group: classifier_head, Learning Rate: 0.0662
+2024-11-28 17:52:44,828 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:52:49,159 - INFO - Text classifier Epoch 78 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 17:52:49,159 - INFO - Image classifier Epoch 78 Train Accuracies: All 0.8667 | Old 0.9137 | New 0.8431
+2024-11-28 17:52:53,585 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 17:53:02,189 - INFO - len of image selected samples: 408
+2024-11-28 17:53:02,189 - INFO - len of text selected samples: 408
+2024-11-28 17:53:11,211 - INFO - Epoch 80/200, Total Loss: 3.2795, Base Loss: 1.6687, Con Loss: 1.3887, Pseudo Loss Image: 0.1153, Pseudo Loss Image: 0.1153
+2024-11-28 17:53:11,212 - INFO -    Param Group: classifier_head, Learning Rate: 0.0655
+2024-11-28 17:53:11,212 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:53:15,704 - INFO - Text classifier Epoch 79 Train Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 17:53:15,705 - INFO - Image classifier Epoch 79 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 17:53:20,117 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 17:53:28,918 - INFO - len of image selected samples: 408
+2024-11-28 17:53:28,919 - INFO - len of text selected samples: 408
+2024-11-28 17:53:37,912 - INFO - Epoch 81/200, Total Loss: 3.4320, Base Loss: 1.7678, Con Loss: 1.4218, Pseudo Loss Image: 0.1214, Pseudo Loss Image: 0.1214
+2024-11-28 17:53:37,912 - INFO -    Param Group: classifier_head, Learning Rate: 0.0647
+2024-11-28 17:53:37,912 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:53:42,311 - INFO - Text classifier Epoch 80 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 17:53:42,311 - INFO - Image classifier Epoch 80 Train Accuracies: All 0.8706 | Old 0.9176 | New 0.8471
+2024-11-28 17:53:46,774 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 17:53:55,584 - INFO - len of image selected samples: 408
+2024-11-28 17:53:55,584 - INFO - len of text selected samples: 408
+2024-11-28 17:54:04,443 - INFO - Epoch 82/200, Total Loss: 3.4239, Base Loss: 1.7697, Con Loss: 1.4164, Pseudo Loss Image: 0.1145, Pseudo Loss Image: 0.1145
+2024-11-28 17:54:04,443 - INFO -    Param Group: classifier_head, Learning Rate: 0.0640
+2024-11-28 17:54:04,443 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:54:08,759 - INFO - Text classifier Epoch 81 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 17:54:08,759 - INFO - Image classifier Epoch 81 Train Accuracies: All 0.8641 | Old 0.9176 | New 0.8373
+2024-11-28 17:54:13,069 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 17:54:21,742 - INFO - len of image selected samples: 408
+2024-11-28 17:54:21,742 - INFO - len of text selected samples: 408
+2024-11-28 17:54:30,720 - INFO - Epoch 83/200, Total Loss: 3.3199, Base Loss: 1.7334, Con Loss: 1.3595, Pseudo Loss Image: 0.1151, Pseudo Loss Image: 0.1151
+2024-11-28 17:54:30,720 - INFO -    Param Group: classifier_head, Learning Rate: 0.0632
+2024-11-28 17:54:30,720 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:54:35,012 - INFO - Text classifier Epoch 82 Train Accuracies: All 0.8667 | Old 0.9255 | New 0.8373
+2024-11-28 17:54:35,012 - INFO - Image classifier Epoch 82 Train Accuracies: All 0.8654 | Old 0.9137 | New 0.8412
+2024-11-28 17:54:39,292 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9412 | New 0.8412
+2024-11-28 17:54:47,924 - INFO - len of image selected samples: 408
+2024-11-28 17:54:47,924 - INFO - len of text selected samples: 408
+2024-11-28 17:54:56,859 - INFO - Epoch 84/200, Total Loss: 3.3312, Base Loss: 1.7013, Con Loss: 1.3994, Pseudo Loss Image: 0.1113, Pseudo Loss Image: 0.1113
+2024-11-28 17:54:56,860 - INFO -    Param Group: classifier_head, Learning Rate: 0.0625
+2024-11-28 17:54:56,860 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:55:01,201 - INFO - Text classifier Epoch 83 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 17:55:01,201 - INFO - Image classifier Epoch 83 Train Accuracies: All 0.8627 | Old 0.9176 | New 0.8353
+2024-11-28 17:55:05,524 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 17:55:14,154 - INFO - len of image selected samples: 408
+2024-11-28 17:55:14,154 - INFO - len of text selected samples: 408
+2024-11-28 17:55:22,971 - INFO - Epoch 85/200, Total Loss: 3.4040, Base Loss: 1.7779, Con Loss: 1.4046, Pseudo Loss Image: 0.1161, Pseudo Loss Image: 0.1161
+2024-11-28 17:55:22,972 - INFO -    Param Group: classifier_head, Learning Rate: 0.0617
+2024-11-28 17:55:22,972 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:55:27,327 - INFO - Text classifier Epoch 84 Train Accuracies: All 0.8719 | Old 0.9255 | New 0.8451
+2024-11-28 17:55:27,328 - INFO - Image classifier Epoch 84 Train Accuracies: All 0.8614 | Old 0.9137 | New 0.8353
+2024-11-28 17:55:31,774 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 17:55:40,512 - INFO - len of image selected samples: 408
+2024-11-28 17:55:40,512 - INFO - len of text selected samples: 408
+2024-11-28 17:55:49,342 - INFO - Epoch 86/200, Total Loss: 3.3748, Base Loss: 1.7635, Con Loss: 1.3862, Pseudo Loss Image: 0.1012, Pseudo Loss Image: 0.1012
+2024-11-28 17:55:49,342 - INFO -    Param Group: classifier_head, Learning Rate: 0.0609
+2024-11-28 17:55:49,342 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:55:53,643 - INFO - Text classifier Epoch 85 Train Accuracies: All 0.8706 | Old 0.9255 | New 0.8431
+2024-11-28 17:55:53,643 - INFO - Image classifier Epoch 85 Train Accuracies: All 0.8654 | Old 0.9137 | New 0.8412
+2024-11-28 17:55:57,929 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 17:56:06,691 - INFO - len of image selected samples: 408
+2024-11-28 17:56:06,691 - INFO - len of text selected samples: 408
+2024-11-28 17:56:15,703 - INFO - Epoch 87/200, Total Loss: 3.3623, Base Loss: 1.7928, Con Loss: 1.3749, Pseudo Loss Image: 0.0972, Pseudo Loss Image: 0.0972
+2024-11-28 17:56:15,704 - INFO -    Param Group: classifier_head, Learning Rate: 0.0602
+2024-11-28 17:56:15,704 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:56:20,024 - INFO - Text classifier Epoch 86 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 17:56:20,024 - INFO - Image classifier Epoch 86 Train Accuracies: All 0.8641 | Old 0.9137 | New 0.8392
+2024-11-28 17:56:24,390 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 17:56:33,010 - INFO - len of image selected samples: 408
+2024-11-28 17:56:33,010 - INFO - len of text selected samples: 408
+2024-11-28 17:56:41,949 - INFO - Epoch 88/200, Total Loss: 3.3931, Base Loss: 1.7643, Con Loss: 1.4092, Pseudo Loss Image: 0.0986, Pseudo Loss Image: 0.0986
+2024-11-28 17:56:41,949 - INFO -    Param Group: classifier_head, Learning Rate: 0.0594
+2024-11-28 17:56:41,949 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:56:46,251 - INFO - Text classifier Epoch 87 Train Accuracies: All 0.8667 | Old 0.9255 | New 0.8373
+2024-11-28 17:56:46,251 - INFO - Image classifier Epoch 87 Train Accuracies: All 0.8654 | Old 0.9137 | New 0.8412
+2024-11-28 17:56:50,576 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 17:56:59,562 - INFO - len of image selected samples: 408
+2024-11-28 17:56:59,562 - INFO - len of text selected samples: 408
+2024-11-28 17:57:08,337 - INFO - Epoch 89/200, Total Loss: 3.3362, Base Loss: 1.7524, Con Loss: 1.3837, Pseudo Loss Image: 0.1018, Pseudo Loss Image: 0.1018
+2024-11-28 17:57:08,338 - INFO -    Param Group: classifier_head, Learning Rate: 0.0586
+2024-11-28 17:57:08,338 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:57:12,638 - INFO - Text classifier Epoch 88 Train Accuracies: All 0.8693 | Old 0.9255 | New 0.8412
+2024-11-28 17:57:12,638 - INFO - Image classifier Epoch 88 Train Accuracies: All 0.8654 | Old 0.9098 | New 0.8431
+2024-11-28 17:57:16,970 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 17:57:25,615 - INFO - len of image selected samples: 408
+2024-11-28 17:57:25,615 - INFO - len of text selected samples: 408
+2024-11-28 17:57:34,611 - INFO - Epoch 90/200, Total Loss: 3.3144, Base Loss: 1.7333, Con Loss: 1.3782, Pseudo Loss Image: 0.0992, Pseudo Loss Image: 0.0992
+2024-11-28 17:57:34,611 - INFO -    Param Group: classifier_head, Learning Rate: 0.0579
+2024-11-28 17:57:34,611 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:57:38,951 - INFO - Text classifier Epoch 89 Train Accuracies: All 0.8745 | Old 0.9255 | New 0.8490
+2024-11-28 17:57:38,951 - INFO - Image classifier Epoch 89 Train Accuracies: All 0.8627 | Old 0.9098 | New 0.8392
+2024-11-28 17:57:43,300 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9373 | New 0.8451
+2024-11-28 17:57:52,072 - INFO - len of image selected samples: 408
+2024-11-28 17:57:52,072 - INFO - len of text selected samples: 408
+2024-11-28 17:58:00,995 - INFO - Epoch 91/200, Total Loss: 3.3421, Base Loss: 1.7544, Con Loss: 1.3888, Pseudo Loss Image: 0.1020, Pseudo Loss Image: 0.1020
+2024-11-28 17:58:00,995 - INFO -    Param Group: classifier_head, Learning Rate: 0.0571
+2024-11-28 17:58:00,995 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:58:05,376 - INFO - Text classifier Epoch 90 Train Accuracies: All 0.8693 | Old 0.9255 | New 0.8412
+2024-11-28 17:58:05,376 - INFO - Image classifier Epoch 90 Train Accuracies: All 0.8601 | Old 0.9137 | New 0.8333
+2024-11-28 17:58:09,746 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 17:58:18,431 - INFO - len of image selected samples: 408
+2024-11-28 17:58:18,431 - INFO - len of text selected samples: 408
+2024-11-28 17:58:27,342 - INFO - Epoch 92/200, Total Loss: 3.3206, Base Loss: 1.7275, Con Loss: 1.3744, Pseudo Loss Image: 0.1028, Pseudo Loss Image: 0.1028
+2024-11-28 17:58:27,342 - INFO -    Param Group: classifier_head, Learning Rate: 0.0563
+2024-11-28 17:58:27,342 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:58:31,773 - INFO - Text classifier Epoch 91 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 17:58:31,774 - INFO - Image classifier Epoch 91 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 17:58:36,150 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9412 | New 0.8431
+2024-11-28 17:58:44,816 - INFO - len of image selected samples: 408
+2024-11-28 17:58:44,816 - INFO - len of text selected samples: 408
+2024-11-28 17:58:53,701 - INFO - Epoch 93/200, Total Loss: 3.2147, Base Loss: 1.6937, Con Loss: 1.3561, Pseudo Loss Image: 0.0848, Pseudo Loss Image: 0.0848
+2024-11-28 17:58:53,701 - INFO -    Param Group: classifier_head, Learning Rate: 0.0555
+2024-11-28 17:58:53,701 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:58:58,030 - INFO - Text classifier Epoch 92 Train Accuracies: All 0.8680 | Old 0.9255 | New 0.8392
+2024-11-28 17:58:58,030 - INFO - Image classifier Epoch 92 Train Accuracies: All 0.8588 | Old 0.9098 | New 0.8333
+2024-11-28 17:59:02,376 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9412 | New 0.8412
+2024-11-28 17:59:11,026 - INFO - len of image selected samples: 408
+2024-11-28 17:59:11,026 - INFO - len of text selected samples: 408
+2024-11-28 17:59:19,866 - INFO - Epoch 94/200, Total Loss: 3.2330, Base Loss: 1.7149, Con Loss: 1.3447, Pseudo Loss Image: 0.0854, Pseudo Loss Image: 0.0854
+2024-11-28 17:59:19,866 - INFO -    Param Group: classifier_head, Learning Rate: 0.0548
+2024-11-28 17:59:19,866 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:59:24,171 - INFO - Text classifier Epoch 93 Train Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 17:59:24,171 - INFO - Image classifier Epoch 93 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 17:59:28,641 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9412 | New 0.8412
+2024-11-28 17:59:37,589 - INFO - len of image selected samples: 408
+2024-11-28 17:59:37,589 - INFO - len of text selected samples: 408
+2024-11-28 17:59:46,435 - INFO - Epoch 95/200, Total Loss: 3.3765, Base Loss: 1.7943, Con Loss: 1.3433, Pseudo Loss Image: 0.1088, Pseudo Loss Image: 0.1088
+2024-11-28 17:59:46,436 - INFO -    Param Group: classifier_head, Learning Rate: 0.0540
+2024-11-28 17:59:46,436 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 17:59:50,736 - INFO - Text classifier Epoch 94 Train Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 17:59:50,736 - INFO - Image classifier Epoch 94 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 17:59:55,091 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9412 | New 0.8412
+2024-11-28 18:00:03,832 - INFO - len of image selected samples: 408
+2024-11-28 18:00:03,832 - INFO - len of text selected samples: 408
+2024-11-28 18:00:12,644 - INFO - Epoch 96/200, Total Loss: 3.5590, Base Loss: 1.9247, Con Loss: 1.4208, Pseudo Loss Image: 0.0862, Pseudo Loss Image: 0.0862
+2024-11-28 18:00:12,644 - INFO -    Param Group: classifier_head, Learning Rate: 0.0532
+2024-11-28 18:00:12,644 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:00:16,990 - INFO - Text classifier Epoch 95 Train Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:00:16,991 - INFO - Image classifier Epoch 95 Train Accuracies: All 0.8627 | Old 0.9098 | New 0.8392
+2024-11-28 18:00:21,361 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 18:00:30,078 - INFO - len of image selected samples: 408
+2024-11-28 18:00:30,078 - INFO - len of text selected samples: 408
+2024-11-28 18:00:38,958 - INFO - Epoch 97/200, Total Loss: 3.3324, Base Loss: 1.7821, Con Loss: 1.3651, Pseudo Loss Image: 0.0891, Pseudo Loss Image: 0.0891
+2024-11-28 18:00:38,958 - INFO -    Param Group: classifier_head, Learning Rate: 0.0524
+2024-11-28 18:00:38,958 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:00:43,338 - INFO - Text classifier Epoch 96 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 18:00:43,338 - INFO - Image classifier Epoch 96 Train Accuracies: All 0.8588 | Old 0.9098 | New 0.8333
+2024-11-28 18:00:47,684 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9412 | New 0.8412
+2024-11-28 18:00:56,436 - INFO - len of image selected samples: 408
+2024-11-28 18:00:56,436 - INFO - len of text selected samples: 408
+2024-11-28 18:01:05,351 - INFO - Epoch 98/200, Total Loss: 3.3214, Base Loss: 1.7559, Con Loss: 1.3608, Pseudo Loss Image: 0.0991, Pseudo Loss Image: 0.0991
+2024-11-28 18:01:05,352 - INFO -    Param Group: classifier_head, Learning Rate: 0.0516
+2024-11-28 18:01:05,352 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:01:09,693 - INFO - Text classifier Epoch 97 Train Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:01:09,693 - INFO - Image classifier Epoch 97 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:01:14,019 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:01:22,739 - INFO - len of image selected samples: 408
+2024-11-28 18:01:22,739 - INFO - len of text selected samples: 408
+2024-11-28 18:01:31,549 - INFO - Epoch 99/200, Total Loss: 3.2618, Base Loss: 1.7428, Con Loss: 1.3384, Pseudo Loss Image: 0.0891, Pseudo Loss Image: 0.0891
+2024-11-28 18:01:31,549 - INFO -    Param Group: classifier_head, Learning Rate: 0.0508
+2024-11-28 18:01:31,549 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:01:35,869 - INFO - Text classifier Epoch 98 Train Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:01:35,870 - INFO - Image classifier Epoch 98 Train Accuracies: All 0.8549 | Old 0.9059 | New 0.8294
+2024-11-28 18:01:40,181 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9412 | New 0.8392
+2024-11-28 18:01:48,897 - INFO - len of image selected samples: 408
+2024-11-28 18:01:48,897 - INFO - len of text selected samples: 408
+2024-11-28 18:01:57,916 - INFO - Epoch 100/200, Total Loss: 3.3725, Base Loss: 1.8219, Con Loss: 1.3555, Pseudo Loss Image: 0.0912, Pseudo Loss Image: 0.0912
+2024-11-28 18:01:57,916 - INFO -    Param Group: classifier_head, Learning Rate: 0.0501
+2024-11-28 18:01:57,916 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:02:02,243 - INFO - Text classifier Epoch 99 Train Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:02:02,243 - INFO - Image classifier Epoch 99 Train Accuracies: All 0.8549 | Old 0.9059 | New 0.8294
+2024-11-28 18:02:06,889 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:02:15,777 - INFO - len of image selected samples: 408
+2024-11-28 18:02:15,777 - INFO - len of text selected samples: 408
+2024-11-28 18:02:24,552 - INFO - Epoch 101/200, Total Loss: 3.4307, Base Loss: 1.8355, Con Loss: 1.3843, Pseudo Loss Image: 0.1146, Pseudo Loss Image: 0.1146
+2024-11-28 18:02:24,552 - INFO -    Param Group: classifier_head, Learning Rate: 0.0493
+2024-11-28 18:02:24,552 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:02:28,924 - INFO - Text classifier Epoch 100 Train Accuracies: All 0.8654 | Old 0.9255 | New 0.8353
+2024-11-28 18:02:28,924 - INFO - Image classifier Epoch 100 Train Accuracies: All 0.8588 | Old 0.9059 | New 0.8353
+2024-11-28 18:02:33,279 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:02:41,978 - INFO - len of image selected samples: 408
+2024-11-28 18:02:41,978 - INFO - len of text selected samples: 408
+2024-11-28 18:02:50,783 - INFO - Epoch 102/200, Total Loss: 3.2772, Base Loss: 1.7129, Con Loss: 1.3562, Pseudo Loss Image: 0.1066, Pseudo Loss Image: 0.1066
+2024-11-28 18:02:50,783 - INFO -    Param Group: classifier_head, Learning Rate: 0.0485
+2024-11-28 18:02:50,783 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:02:55,087 - INFO - Text classifier Epoch 101 Train Accuracies: All 0.8641 | Old 0.9294 | New 0.8314
+2024-11-28 18:02:55,087 - INFO - Image classifier Epoch 101 Train Accuracies: All 0.8562 | Old 0.9059 | New 0.8314
+2024-11-28 18:02:59,570 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:03:08,265 - INFO - len of image selected samples: 408
+2024-11-28 18:03:08,265 - INFO - len of text selected samples: 408
+2024-11-28 18:03:17,269 - INFO - Epoch 103/200, Total Loss: 3.3891, Base Loss: 1.8120, Con Loss: 1.3897, Pseudo Loss Image: 0.0942, Pseudo Loss Image: 0.0942
+2024-11-28 18:03:17,269 - INFO -    Param Group: classifier_head, Learning Rate: 0.0477
+2024-11-28 18:03:17,269 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:03:21,649 - INFO - Text classifier Epoch 102 Train Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:03:21,649 - INFO - Image classifier Epoch 102 Train Accuracies: All 0.8549 | Old 0.9059 | New 0.8294
+2024-11-28 18:03:25,979 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:03:34,885 - INFO - len of image selected samples: 408
+2024-11-28 18:03:34,886 - INFO - len of text selected samples: 408
+2024-11-28 18:03:43,764 - INFO - Epoch 104/200, Total Loss: 3.2879, Base Loss: 1.7610, Con Loss: 1.3304, Pseudo Loss Image: 0.0903, Pseudo Loss Image: 0.0903
+2024-11-28 18:03:43,764 - INFO -    Param Group: classifier_head, Learning Rate: 0.0469
+2024-11-28 18:03:43,764 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:03:48,110 - INFO - Text classifier Epoch 103 Train Accuracies: All 0.8667 | Old 0.9216 | New 0.8392
+2024-11-28 18:03:48,110 - INFO - Image classifier Epoch 103 Train Accuracies: All 0.8562 | Old 0.9059 | New 0.8314
+2024-11-28 18:03:52,441 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:04:01,210 - INFO - len of image selected samples: 408
+2024-11-28 18:04:01,211 - INFO - len of text selected samples: 408
+2024-11-28 18:04:10,120 - INFO - Epoch 105/200, Total Loss: 3.2742, Base Loss: 1.7585, Con Loss: 1.3423, Pseudo Loss Image: 0.0833, Pseudo Loss Image: 0.0833
+2024-11-28 18:04:10,120 - INFO -    Param Group: classifier_head, Learning Rate: 0.0461
+2024-11-28 18:04:10,120 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:04:14,461 - INFO - Text classifier Epoch 104 Train Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:04:14,462 - INFO - Image classifier Epoch 104 Train Accuracies: All 0.8562 | Old 0.9059 | New 0.8314
+2024-11-28 18:04:18,831 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:04:27,627 - INFO - len of image selected samples: 408
+2024-11-28 18:04:27,627 - INFO - len of text selected samples: 408
+2024-11-28 18:04:36,516 - INFO - Epoch 106/200, Total Loss: 3.1818, Base Loss: 1.6872, Con Loss: 1.3147, Pseudo Loss Image: 0.1033, Pseudo Loss Image: 0.1033
+2024-11-28 18:04:36,517 - INFO -    Param Group: classifier_head, Learning Rate: 0.0453
+2024-11-28 18:04:36,517 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:04:40,859 - INFO - Text classifier Epoch 105 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 18:04:40,859 - INFO - Image classifier Epoch 105 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:04:45,183 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:04:53,882 - INFO - len of image selected samples: 408
+2024-11-28 18:04:53,882 - INFO - len of text selected samples: 408
+2024-11-28 18:05:02,882 - INFO - Epoch 107/200, Total Loss: 3.3219, Base Loss: 1.7477, Con Loss: 1.3606, Pseudo Loss Image: 0.1038, Pseudo Loss Image: 0.1038
+2024-11-28 18:05:02,883 - INFO -    Param Group: classifier_head, Learning Rate: 0.0446
+2024-11-28 18:05:02,883 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:05:07,227 - INFO - Text classifier Epoch 106 Train Accuracies: All 0.8771 | Old 0.9333 | New 0.8490
+2024-11-28 18:05:07,227 - INFO - Image classifier Epoch 106 Train Accuracies: All 0.8562 | Old 0.9059 | New 0.8314
+2024-11-28 18:05:11,674 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:05:20,392 - INFO - len of image selected samples: 408
+2024-11-28 18:05:20,393 - INFO - len of text selected samples: 408
+2024-11-28 18:05:29,291 - INFO - Epoch 108/200, Total Loss: 3.1111, Base Loss: 1.6238, Con Loss: 1.3072, Pseudo Loss Image: 0.0860, Pseudo Loss Image: 0.0860
+2024-11-28 18:05:29,291 - INFO -    Param Group: classifier_head, Learning Rate: 0.0438
+2024-11-28 18:05:29,291 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:05:33,664 - INFO - Text classifier Epoch 107 Train Accuracies: All 0.8745 | Old 0.9333 | New 0.8451
+2024-11-28 18:05:33,664 - INFO - Image classifier Epoch 107 Train Accuracies: All 0.8523 | Old 0.9059 | New 0.8255
+2024-11-28 18:05:38,035 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:05:46,765 - INFO - len of image selected samples: 408
+2024-11-28 18:05:46,766 - INFO - len of text selected samples: 408
+2024-11-28 18:05:55,777 - INFO - Epoch 109/200, Total Loss: 3.3244, Base Loss: 1.8033, Con Loss: 1.3485, Pseudo Loss Image: 0.0927, Pseudo Loss Image: 0.0927
+2024-11-28 18:05:55,777 - INFO -    Param Group: classifier_head, Learning Rate: 0.0430
+2024-11-28 18:05:55,777 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:06:00,114 - INFO - Text classifier Epoch 108 Train Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 18:06:00,114 - INFO - Image classifier Epoch 108 Train Accuracies: All 0.8562 | Old 0.9098 | New 0.8294
+2024-11-28 18:06:04,422 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:06:13,048 - INFO - len of image selected samples: 408
+2024-11-28 18:06:13,048 - INFO - len of text selected samples: 408
+2024-11-28 18:06:21,837 - INFO - Epoch 110/200, Total Loss: 3.3025, Base Loss: 1.7722, Con Loss: 1.3556, Pseudo Loss Image: 0.0782, Pseudo Loss Image: 0.0782
+2024-11-28 18:06:21,837 - INFO -    Param Group: classifier_head, Learning Rate: 0.0422
+2024-11-28 18:06:21,837 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:06:26,282 - INFO - Text classifier Epoch 109 Train Accuracies: All 0.8745 | Old 0.9294 | New 0.8471
+2024-11-28 18:06:26,282 - INFO - Image classifier Epoch 109 Train Accuracies: All 0.8562 | Old 0.9098 | New 0.8294
+2024-11-28 18:06:30,824 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9373 | New 0.8451
+2024-11-28 18:06:39,444 - INFO - len of image selected samples: 408
+2024-11-28 18:06:39,444 - INFO - len of text selected samples: 408
+2024-11-28 18:06:48,432 - INFO - Epoch 111/200, Total Loss: 3.1817, Base Loss: 1.6591, Con Loss: 1.3132, Pseudo Loss Image: 0.0901, Pseudo Loss Image: 0.0901
+2024-11-28 18:06:48,432 - INFO -    Param Group: classifier_head, Learning Rate: 0.0415
+2024-11-28 18:06:48,432 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:06:52,760 - INFO - Text classifier Epoch 110 Train Accuracies: All 0.8771 | Old 0.9333 | New 0.8490
+2024-11-28 18:06:52,761 - INFO - Image classifier Epoch 110 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 18:06:57,122 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9373 | New 0.8471
+2024-11-28 18:07:05,840 - INFO - len of image selected samples: 408
+2024-11-28 18:07:05,840 - INFO - len of text selected samples: 408
+2024-11-28 18:07:14,842 - INFO - Epoch 112/200, Total Loss: 3.1351, Base Loss: 1.6447, Con Loss: 1.2899, Pseudo Loss Image: 0.1052, Pseudo Loss Image: 0.1052
+2024-11-28 18:07:14,842 - INFO -    Param Group: classifier_head, Learning Rate: 0.0407
+2024-11-28 18:07:14,842 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:07:19,212 - INFO - Text classifier Epoch 111 Train Accuracies: All 0.8706 | Old 0.9333 | New 0.8392
+2024-11-28 18:07:19,212 - INFO - Image classifier Epoch 111 Train Accuracies: All 0.8627 | Old 0.9098 | New 0.8392
+2024-11-28 18:07:23,577 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:07:32,319 - INFO - len of image selected samples: 408
+2024-11-28 18:07:32,319 - INFO - len of text selected samples: 408
+2024-11-28 18:07:41,246 - INFO - Epoch 113/200, Total Loss: 3.2064, Base Loss: 1.7469, Con Loss: 1.2892, Pseudo Loss Image: 0.0793, Pseudo Loss Image: 0.0793
+2024-11-28 18:07:41,246 - INFO -    Param Group: classifier_head, Learning Rate: 0.0399
+2024-11-28 18:07:41,246 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:07:45,586 - INFO - Text classifier Epoch 112 Train Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:07:45,586 - INFO - Image classifier Epoch 112 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 18:07:49,912 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:07:58,544 - INFO - len of image selected samples: 408
+2024-11-28 18:07:58,544 - INFO - len of text selected samples: 408
+2024-11-28 18:08:07,541 - INFO - Epoch 114/200, Total Loss: 3.2099, Base Loss: 1.7232, Con Loss: 1.3151, Pseudo Loss Image: 0.0925, Pseudo Loss Image: 0.0925
+2024-11-28 18:08:07,542 - INFO -    Param Group: classifier_head, Learning Rate: 0.0392
+2024-11-28 18:08:07,542 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:08:11,943 - INFO - Text classifier Epoch 113 Train Accuracies: All 0.8758 | Old 0.9333 | New 0.8471
+2024-11-28 18:08:11,943 - INFO - Image classifier Epoch 113 Train Accuracies: All 0.8627 | Old 0.9098 | New 0.8392
+2024-11-28 18:08:16,269 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9412 | New 0.8431
+2024-11-28 18:08:25,172 - INFO - len of image selected samples: 408
+2024-11-28 18:08:25,173 - INFO - len of text selected samples: 408
+2024-11-28 18:08:34,088 - INFO - Epoch 115/200, Total Loss: 3.2193, Base Loss: 1.7769, Con Loss: 1.2769, Pseudo Loss Image: 0.0861, Pseudo Loss Image: 0.0861
+2024-11-28 18:08:34,088 - INFO -    Param Group: classifier_head, Learning Rate: 0.0384
+2024-11-28 18:08:34,088 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:08:38,412 - INFO - Text classifier Epoch 114 Train Accuracies: All 0.8745 | Old 0.9333 | New 0.8451
+2024-11-28 18:08:38,412 - INFO - Image classifier Epoch 114 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 18:08:42,805 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9373 | New 0.8471
+2024-11-28 18:08:51,433 - INFO - len of image selected samples: 408
+2024-11-28 18:08:51,433 - INFO - len of text selected samples: 408
+2024-11-28 18:09:00,206 - INFO - Epoch 116/200, Total Loss: 3.1598, Base Loss: 1.6573, Con Loss: 1.2985, Pseudo Loss Image: 0.0910, Pseudo Loss Image: 0.0910
+2024-11-28 18:09:00,207 - INFO -    Param Group: classifier_head, Learning Rate: 0.0376
+2024-11-28 18:09:00,207 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:09:04,516 - INFO - Text classifier Epoch 115 Train Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:09:04,516 - INFO - Image classifier Epoch 115 Train Accuracies: All 0.8536 | Old 0.9059 | New 0.8275
+2024-11-28 18:09:08,861 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9373 | New 0.8451
+2024-11-28 18:09:17,658 - INFO - len of image selected samples: 408
+2024-11-28 18:09:17,658 - INFO - len of text selected samples: 408
+2024-11-28 18:09:26,492 - INFO - Epoch 117/200, Total Loss: 3.2456, Base Loss: 1.7295, Con Loss: 1.3385, Pseudo Loss Image: 0.0814, Pseudo Loss Image: 0.0814
+2024-11-28 18:09:26,492 - INFO -    Param Group: classifier_head, Learning Rate: 0.0369
+2024-11-28 18:09:26,492 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:09:30,909 - INFO - Text classifier Epoch 116 Train Accuracies: All 0.8758 | Old 0.9294 | New 0.8490
+2024-11-28 18:09:30,910 - INFO - Image classifier Epoch 116 Train Accuracies: All 0.8575 | Old 0.9059 | New 0.8333
+2024-11-28 18:09:35,516 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9373 | New 0.8471
+2024-11-28 18:09:44,208 - INFO - len of image selected samples: 408
+2024-11-28 18:09:44,208 - INFO - len of text selected samples: 408
+2024-11-28 18:09:53,152 - INFO - Epoch 118/200, Total Loss: 3.1879, Base Loss: 1.6963, Con Loss: 1.3308, Pseudo Loss Image: 0.0768, Pseudo Loss Image: 0.0768
+2024-11-28 18:09:53,152 - INFO -    Param Group: classifier_head, Learning Rate: 0.0361
+2024-11-28 18:09:53,152 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:09:57,609 - INFO - Text classifier Epoch 117 Train Accuracies: All 0.8758 | Old 0.9294 | New 0.8490
+2024-11-28 18:09:57,609 - INFO - Image classifier Epoch 117 Train Accuracies: All 0.8601 | Old 0.9059 | New 0.8373
+2024-11-28 18:10:01,986 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9373 | New 0.8471
+2024-11-28 18:10:10,712 - INFO - len of image selected samples: 408
+2024-11-28 18:10:10,712 - INFO - len of text selected samples: 408
+2024-11-28 18:10:19,643 - INFO - Epoch 119/200, Total Loss: 3.2549, Base Loss: 1.7422, Con Loss: 1.3396, Pseudo Loss Image: 0.0796, Pseudo Loss Image: 0.0796
+2024-11-28 18:10:19,643 - INFO -    Param Group: classifier_head, Learning Rate: 0.0354
+2024-11-28 18:10:19,643 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:10:23,933 - INFO - Text classifier Epoch 118 Train Accuracies: All 0.8745 | Old 0.9255 | New 0.8490
+2024-11-28 18:10:23,933 - INFO - Image classifier Epoch 118 Train Accuracies: All 0.8601 | Old 0.9059 | New 0.8373
+2024-11-28 18:10:28,279 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9333 | New 0.8451
+2024-11-28 18:10:37,197 - INFO - len of image selected samples: 408
+2024-11-28 18:10:37,197 - INFO - len of text selected samples: 408
+2024-11-28 18:10:45,983 - INFO - Epoch 120/200, Total Loss: 3.1773, Base Loss: 1.6902, Con Loss: 1.3272, Pseudo Loss Image: 0.0856, Pseudo Loss Image: 0.0856
+2024-11-28 18:10:45,983 - INFO -    Param Group: classifier_head, Learning Rate: 0.0346
+2024-11-28 18:10:45,983 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:10:50,331 - INFO - Text classifier Epoch 119 Train Accuracies: All 0.8810 | Old 0.9294 | New 0.8569
+2024-11-28 18:10:50,331 - INFO - Image classifier Epoch 119 Train Accuracies: All 0.8627 | Old 0.9059 | New 0.8412
+2024-11-28 18:10:54,649 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9294 | New 0.8490
+2024-11-28 18:11:03,282 - INFO - len of image selected samples: 408
+2024-11-28 18:11:03,282 - INFO - len of text selected samples: 408
+2024-11-28 18:11:12,013 - INFO - Epoch 121/200, Total Loss: 3.2270, Base Loss: 1.7271, Con Loss: 1.3265, Pseudo Loss Image: 0.0805, Pseudo Loss Image: 0.0805
+2024-11-28 18:11:12,013 - INFO -    Param Group: classifier_head, Learning Rate: 0.0339
+2024-11-28 18:11:12,013 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:11:16,588 - INFO - Text classifier Epoch 120 Train Accuracies: All 0.8758 | Old 0.9294 | New 0.8490
+2024-11-28 18:11:16,588 - INFO - Image classifier Epoch 120 Train Accuracies: All 0.8601 | Old 0.9059 | New 0.8373
+2024-11-28 18:11:21,166 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9373 | New 0.8471
+2024-11-28 18:11:30,226 - INFO - len of image selected samples: 408
+2024-11-28 18:11:30,227 - INFO - len of text selected samples: 408
+2024-11-28 18:11:39,046 - INFO - Epoch 122/200, Total Loss: 3.3768, Base Loss: 1.8639, Con Loss: 1.3374, Pseudo Loss Image: 0.0913, Pseudo Loss Image: 0.0913
+2024-11-28 18:11:39,046 - INFO -    Param Group: classifier_head, Learning Rate: 0.0331
+2024-11-28 18:11:39,046 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:11:43,578 - INFO - Text classifier Epoch 121 Train Accuracies: All 0.8758 | Old 0.9333 | New 0.8471
+2024-11-28 18:11:43,578 - INFO - Image classifier Epoch 121 Train Accuracies: All 0.8641 | Old 0.9098 | New 0.8412
+2024-11-28 18:11:47,917 - INFO - Weighted Accuracies: All 0.8784 | Old 0.9373 | New 0.8490
+2024-11-28 18:11:56,557 - INFO - len of image selected samples: 408
+2024-11-28 18:11:56,557 - INFO - len of text selected samples: 408
+2024-11-28 18:12:05,566 - INFO - Epoch 123/200, Total Loss: 3.2014, Base Loss: 1.7209, Con Loss: 1.3028, Pseudo Loss Image: 0.0735, Pseudo Loss Image: 0.0735
+2024-11-28 18:12:05,566 - INFO -    Param Group: classifier_head, Learning Rate: 0.0324
+2024-11-28 18:12:05,566 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:12:09,905 - INFO - Text classifier Epoch 122 Train Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:12:09,906 - INFO - Image classifier Epoch 122 Train Accuracies: All 0.8627 | Old 0.9098 | New 0.8392
+2024-11-28 18:12:14,224 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9333 | New 0.8490
+2024-11-28 18:12:23,079 - INFO - len of image selected samples: 408
+2024-11-28 18:12:23,079 - INFO - len of text selected samples: 408
+2024-11-28 18:12:32,148 - INFO - Epoch 124/200, Total Loss: 3.2208, Base Loss: 1.7484, Con Loss: 1.3183, Pseudo Loss Image: 0.0718, Pseudo Loss Image: 0.0718
+2024-11-28 18:12:32,148 - INFO -    Param Group: classifier_head, Learning Rate: 0.0317
+2024-11-28 18:12:32,148 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:12:36,482 - INFO - Text classifier Epoch 123 Train Accuracies: All 0.8745 | Old 0.9333 | New 0.8451
+2024-11-28 18:12:36,482 - INFO - Image classifier Epoch 123 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:12:40,828 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9333 | New 0.8471
+2024-11-28 18:12:49,590 - INFO - len of image selected samples: 408
+2024-11-28 18:12:49,590 - INFO - len of text selected samples: 408
+2024-11-28 18:12:58,578 - INFO - Epoch 125/200, Total Loss: 3.2708, Base Loss: 1.7722, Con Loss: 1.3297, Pseudo Loss Image: 0.0789, Pseudo Loss Image: 0.0789
+2024-11-28 18:12:58,579 - INFO -    Param Group: classifier_head, Learning Rate: 0.0309
+2024-11-28 18:12:58,579 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:13:02,943 - INFO - Text classifier Epoch 124 Train Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:13:02,943 - INFO - Image classifier Epoch 124 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 18:13:07,350 - INFO - Weighted Accuracies: All 0.8771 | Old 0.9373 | New 0.8471
+2024-11-28 18:13:15,973 - INFO - len of image selected samples: 408
+2024-11-28 18:13:15,973 - INFO - len of text selected samples: 408
+2024-11-28 18:13:24,762 - INFO - Epoch 126/200, Total Loss: 3.2263, Base Loss: 1.7521, Con Loss: 1.3063, Pseudo Loss Image: 0.0849, Pseudo Loss Image: 0.0849
+2024-11-28 18:13:24,762 - INFO -    Param Group: classifier_head, Learning Rate: 0.0302
+2024-11-28 18:13:24,762 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:13:29,110 - INFO - Text classifier Epoch 125 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 18:13:29,110 - INFO - Image classifier Epoch 125 Train Accuracies: All 0.8601 | Old 0.9137 | New 0.8333
+2024-11-28 18:13:33,522 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:13:42,192 - INFO - len of image selected samples: 408
+2024-11-28 18:13:42,192 - INFO - len of text selected samples: 408
+2024-11-28 18:13:51,094 - INFO - Epoch 127/200, Total Loss: 3.0895, Base Loss: 1.6591, Con Loss: 1.2745, Pseudo Loss Image: 0.0830, Pseudo Loss Image: 0.0830
+2024-11-28 18:13:51,094 - INFO -    Param Group: classifier_head, Learning Rate: 0.0295
+2024-11-28 18:13:51,094 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:13:55,404 - INFO - Text classifier Epoch 126 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 18:13:55,404 - INFO - Image classifier Epoch 126 Train Accuracies: All 0.8588 | Old 0.9137 | New 0.8314
+2024-11-28 18:13:59,705 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:14:08,502 - INFO - len of image selected samples: 408
+2024-11-28 18:14:08,502 - INFO - len of text selected samples: 408
+2024-11-28 18:14:17,324 - INFO - Epoch 128/200, Total Loss: 3.1376, Base Loss: 1.6942, Con Loss: 1.2727, Pseudo Loss Image: 0.0755, Pseudo Loss Image: 0.0755
+2024-11-28 18:14:17,324 - INFO -    Param Group: classifier_head, Learning Rate: 0.0288
+2024-11-28 18:14:17,324 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:14:21,621 - INFO - Text classifier Epoch 127 Train Accuracies: All 0.8693 | Old 0.9333 | New 0.8373
+2024-11-28 18:14:21,622 - INFO - Image classifier Epoch 127 Train Accuracies: All 0.8614 | Old 0.9137 | New 0.8353
+2024-11-28 18:14:25,911 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:14:34,629 - INFO - len of image selected samples: 408
+2024-11-28 18:14:34,629 - INFO - len of text selected samples: 408
+2024-11-28 18:14:43,534 - INFO - Epoch 129/200, Total Loss: 3.1495, Base Loss: 1.6958, Con Loss: 1.2819, Pseudo Loss Image: 0.0903, Pseudo Loss Image: 0.0903
+2024-11-28 18:14:43,534 - INFO -    Param Group: classifier_head, Learning Rate: 0.0281
+2024-11-28 18:14:43,534 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:14:47,859 - INFO - Text classifier Epoch 128 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 18:14:47,860 - INFO - Image classifier Epoch 128 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:14:52,223 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:15:00,931 - INFO - len of image selected samples: 408
+2024-11-28 18:15:00,932 - INFO - len of text selected samples: 408
+2024-11-28 18:15:09,780 - INFO - Epoch 130/200, Total Loss: 3.1804, Base Loss: 1.7309, Con Loss: 1.2988, Pseudo Loss Image: 0.0709, Pseudo Loss Image: 0.0709
+2024-11-28 18:15:09,781 - INFO -    Param Group: classifier_head, Learning Rate: 0.0274
+2024-11-28 18:15:09,781 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:15:14,170 - INFO - Text classifier Epoch 129 Train Accuracies: All 0.8680 | Old 0.9294 | New 0.8373
+2024-11-28 18:15:14,171 - INFO - Image classifier Epoch 129 Train Accuracies: All 0.8588 | Old 0.9098 | New 0.8333
+2024-11-28 18:15:18,583 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9373 | New 0.8451
+2024-11-28 18:15:27,288 - INFO - len of image selected samples: 408
+2024-11-28 18:15:27,288 - INFO - len of text selected samples: 408
+2024-11-28 18:15:36,340 - INFO - Epoch 131/200, Total Loss: 3.2913, Base Loss: 1.8331, Con Loss: 1.3007, Pseudo Loss Image: 0.0727, Pseudo Loss Image: 0.0727
+2024-11-28 18:15:36,340 - INFO -    Param Group: classifier_head, Learning Rate: 0.0267
+2024-11-28 18:15:36,340 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:15:40,701 - INFO - Text classifier Epoch 130 Train Accuracies: All 0.8680 | Old 0.9255 | New 0.8392
+2024-11-28 18:15:40,701 - INFO - Image classifier Epoch 130 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:15:45,029 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:15:53,664 - INFO - len of image selected samples: 408
+2024-11-28 18:15:53,664 - INFO - len of text selected samples: 408
+2024-11-28 18:16:02,395 - INFO - Epoch 132/200, Total Loss: 3.1461, Base Loss: 1.7195, Con Loss: 1.2695, Pseudo Loss Image: 0.0709, Pseudo Loss Image: 0.0709
+2024-11-28 18:16:02,395 - INFO -    Param Group: classifier_head, Learning Rate: 0.0260
+2024-11-28 18:16:02,395 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:16:06,793 - INFO - Text classifier Epoch 131 Train Accuracies: All 0.8706 | Old 0.9255 | New 0.8431
+2024-11-28 18:16:06,793 - INFO - Image classifier Epoch 131 Train Accuracies: All 0.8575 | Old 0.9059 | New 0.8333
+2024-11-28 18:16:11,125 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:16:19,732 - INFO - len of image selected samples: 408
+2024-11-28 18:16:19,732 - INFO - len of text selected samples: 408
+2024-11-28 18:16:28,515 - INFO - Epoch 133/200, Total Loss: 3.1435, Base Loss: 1.7055, Con Loss: 1.2916, Pseudo Loss Image: 0.0674, Pseudo Loss Image: 0.0674
+2024-11-28 18:16:28,515 - INFO -    Param Group: classifier_head, Learning Rate: 0.0253
+2024-11-28 18:16:28,515 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:16:32,966 - INFO - Text classifier Epoch 132 Train Accuracies: All 0.8719 | Old 0.9255 | New 0.8451
+2024-11-28 18:16:32,967 - INFO - Image classifier Epoch 132 Train Accuracies: All 0.8549 | Old 0.9059 | New 0.8294
+2024-11-28 18:16:37,312 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:16:45,984 - INFO - len of image selected samples: 408
+2024-11-28 18:16:45,984 - INFO - len of text selected samples: 408
+2024-11-28 18:16:54,952 - INFO - Epoch 134/200, Total Loss: 3.1936, Base Loss: 1.7334, Con Loss: 1.2973, Pseudo Loss Image: 0.0777, Pseudo Loss Image: 0.0777
+2024-11-28 18:16:54,952 - INFO -    Param Group: classifier_head, Learning Rate: 0.0246
+2024-11-28 18:16:54,952 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:16:59,373 - INFO - Text classifier Epoch 133 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:16:59,373 - INFO - Image classifier Epoch 133 Train Accuracies: All 0.8549 | Old 0.9059 | New 0.8294
+2024-11-28 18:17:03,734 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:17:12,589 - INFO - len of image selected samples: 408
+2024-11-28 18:17:12,590 - INFO - len of text selected samples: 408
+2024-11-28 18:17:21,501 - INFO - Epoch 135/200, Total Loss: 3.1414, Base Loss: 1.7055, Con Loss: 1.2623, Pseudo Loss Image: 0.0765, Pseudo Loss Image: 0.0765
+2024-11-28 18:17:21,501 - INFO -    Param Group: classifier_head, Learning Rate: 0.0240
+2024-11-28 18:17:21,501 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:17:25,872 - INFO - Text classifier Epoch 134 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:17:25,872 - INFO - Image classifier Epoch 134 Train Accuracies: All 0.8562 | Old 0.9098 | New 0.8294
+2024-11-28 18:17:30,230 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:17:38,904 - INFO - len of image selected samples: 408
+2024-11-28 18:17:38,904 - INFO - len of text selected samples: 408
+2024-11-28 18:17:47,675 - INFO - Epoch 136/200, Total Loss: 3.1742, Base Loss: 1.7341, Con Loss: 1.2875, Pseudo Loss Image: 0.0719, Pseudo Loss Image: 0.0719
+2024-11-28 18:17:47,675 - INFO -    Param Group: classifier_head, Learning Rate: 0.0233
+2024-11-28 18:17:47,675 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:17:52,070 - INFO - Text classifier Epoch 135 Train Accuracies: All 0.8745 | Old 0.9216 | New 0.8510
+2024-11-28 18:17:52,071 - INFO - Image classifier Epoch 135 Train Accuracies: All 0.8510 | Old 0.9059 | New 0.8235
+2024-11-28 18:17:56,445 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9373 | New 0.8373
+2024-11-28 18:18:05,173 - INFO - len of image selected samples: 408
+2024-11-28 18:18:05,174 - INFO - len of text selected samples: 408
+2024-11-28 18:18:13,829 - INFO - Epoch 137/200, Total Loss: 3.1394, Base Loss: 1.7115, Con Loss: 1.2655, Pseudo Loss Image: 0.0809, Pseudo Loss Image: 0.0809
+2024-11-28 18:18:13,829 - INFO -    Param Group: classifier_head, Learning Rate: 0.0226
+2024-11-28 18:18:13,829 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:18:18,114 - INFO - Text classifier Epoch 136 Train Accuracies: All 0.8745 | Old 0.9216 | New 0.8510
+2024-11-28 18:18:18,114 - INFO - Image classifier Epoch 136 Train Accuracies: All 0.8536 | Old 0.9059 | New 0.8275
+2024-11-28 18:18:22,425 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 18:18:31,147 - INFO - len of image selected samples: 408
+2024-11-28 18:18:31,148 - INFO - len of text selected samples: 408
+2024-11-28 18:18:40,047 - INFO - Epoch 138/200, Total Loss: 3.1405, Base Loss: 1.7338, Con Loss: 1.2728, Pseudo Loss Image: 0.0625, Pseudo Loss Image: 0.0625
+2024-11-28 18:18:40,047 - INFO -    Param Group: classifier_head, Learning Rate: 0.0220
+2024-11-28 18:18:40,047 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:18:44,409 - INFO - Text classifier Epoch 137 Train Accuracies: All 0.8758 | Old 0.9255 | New 0.8510
+2024-11-28 18:18:44,410 - INFO - Image classifier Epoch 137 Train Accuracies: All 0.8575 | Old 0.9059 | New 0.8333
+2024-11-28 18:18:48,794 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 18:18:57,434 - INFO - len of image selected samples: 408
+2024-11-28 18:18:57,434 - INFO - len of text selected samples: 408
+2024-11-28 18:19:06,346 - INFO - Epoch 139/200, Total Loss: 3.0433, Base Loss: 1.5996, Con Loss: 1.2873, Pseudo Loss Image: 0.0845, Pseudo Loss Image: 0.0845
+2024-11-28 18:19:06,346 - INFO -    Param Group: classifier_head, Learning Rate: 0.0213
+2024-11-28 18:19:06,346 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:19:10,845 - INFO - Text classifier Epoch 138 Train Accuracies: All 0.8771 | Old 0.9255 | New 0.8529
+2024-11-28 18:19:10,845 - INFO - Image classifier Epoch 138 Train Accuracies: All 0.8523 | Old 0.9059 | New 0.8255
+2024-11-28 18:19:15,241 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:19:23,920 - INFO - len of image selected samples: 408
+2024-11-28 18:19:23,921 - INFO - len of text selected samples: 408
+2024-11-28 18:19:32,879 - INFO - Epoch 140/200, Total Loss: 2.9740, Base Loss: 1.6055, Con Loss: 1.2254, Pseudo Loss Image: 0.0672, Pseudo Loss Image: 0.0672
+2024-11-28 18:19:32,879 - INFO -    Param Group: classifier_head, Learning Rate: 0.0207
+2024-11-28 18:19:32,879 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:19:37,249 - INFO - Text classifier Epoch 139 Train Accuracies: All 0.8758 | Old 0.9255 | New 0.8510
+2024-11-28 18:19:37,249 - INFO - Image classifier Epoch 139 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:19:41,860 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:19:50,991 - INFO - len of image selected samples: 408
+2024-11-28 18:19:50,991 - INFO - len of text selected samples: 408
+2024-11-28 18:19:59,772 - INFO - Epoch 141/200, Total Loss: 3.3050, Base Loss: 1.7986, Con Loss: 1.3210, Pseudo Loss Image: 0.1018, Pseudo Loss Image: 0.1018
+2024-11-28 18:19:59,772 - INFO -    Param Group: classifier_head, Learning Rate: 0.0201
+2024-11-28 18:19:59,772 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:20:04,171 - INFO - Text classifier Epoch 140 Train Accuracies: All 0.8758 | Old 0.9333 | New 0.8471
+2024-11-28 18:20:04,171 - INFO - Image classifier Epoch 140 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:20:08,561 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 18:20:17,265 - INFO - len of image selected samples: 408
+2024-11-28 18:20:17,265 - INFO - len of text selected samples: 408
+2024-11-28 18:20:26,034 - INFO - Epoch 142/200, Total Loss: 3.2132, Base Loss: 1.7492, Con Loss: 1.2779, Pseudo Loss Image: 0.0824, Pseudo Loss Image: 0.0824
+2024-11-28 18:20:26,034 - INFO -    Param Group: classifier_head, Learning Rate: 0.0194
+2024-11-28 18:20:26,034 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:20:30,356 - INFO - Text classifier Epoch 141 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:20:30,356 - INFO - Image classifier Epoch 141 Train Accuracies: All 0.8523 | Old 0.9098 | New 0.8235
+2024-11-28 18:20:34,709 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9373 | New 0.8392
+2024-11-28 18:20:43,357 - INFO - len of image selected samples: 408
+2024-11-28 18:20:43,358 - INFO - len of text selected samples: 408
+2024-11-28 18:20:52,035 - INFO - Epoch 143/200, Total Loss: 3.2416, Base Loss: 1.7687, Con Loss: 1.3200, Pseudo Loss Image: 0.0803, Pseudo Loss Image: 0.0803
+2024-11-28 18:20:52,035 - INFO -    Param Group: classifier_head, Learning Rate: 0.0188
+2024-11-28 18:20:52,035 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:20:56,477 - INFO - Text classifier Epoch 142 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:20:56,477 - INFO - Image classifier Epoch 142 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:21:00,906 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:21:09,641 - INFO - len of image selected samples: 408
+2024-11-28 18:21:09,642 - INFO - len of text selected samples: 408
+2024-11-28 18:21:18,548 - INFO - Epoch 144/200, Total Loss: 3.1936, Base Loss: 1.7455, Con Loss: 1.3010, Pseudo Loss Image: 0.0670, Pseudo Loss Image: 0.0670
+2024-11-28 18:21:18,548 - INFO -    Param Group: classifier_head, Learning Rate: 0.0182
+2024-11-28 18:21:18,548 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:21:22,895 - INFO - Text classifier Epoch 143 Train Accuracies: All 0.8719 | Old 0.9255 | New 0.8451
+2024-11-28 18:21:22,896 - INFO - Image classifier Epoch 143 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:21:27,257 - INFO - Weighted Accuracies: All 0.8758 | Old 0.9373 | New 0.8451
+2024-11-28 18:21:36,055 - INFO - len of image selected samples: 408
+2024-11-28 18:21:36,056 - INFO - len of text selected samples: 408
+2024-11-28 18:21:44,971 - INFO - Epoch 145/200, Total Loss: 3.1240, Base Loss: 1.6850, Con Loss: 1.2629, Pseudo Loss Image: 0.1042, Pseudo Loss Image: 0.1042
+2024-11-28 18:21:44,971 - INFO -    Param Group: classifier_head, Learning Rate: 0.0176
+2024-11-28 18:21:44,971 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:21:49,386 - INFO - Text classifier Epoch 144 Train Accuracies: All 0.8706 | Old 0.9255 | New 0.8431
+2024-11-28 18:21:49,387 - INFO - Image classifier Epoch 144 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:21:53,840 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9373 | New 0.8412
+2024-11-28 18:22:02,702 - INFO - len of image selected samples: 408
+2024-11-28 18:22:02,702 - INFO - len of text selected samples: 408
+2024-11-28 18:22:11,636 - INFO - Epoch 146/200, Total Loss: 3.2462, Base Loss: 1.8057, Con Loss: 1.2883, Pseudo Loss Image: 0.0725, Pseudo Loss Image: 0.0725
+2024-11-28 18:22:11,636 - INFO -    Param Group: classifier_head, Learning Rate: 0.0170
+2024-11-28 18:22:11,637 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:22:16,062 - INFO - Text classifier Epoch 145 Train Accuracies: All 0.8693 | Old 0.9255 | New 0.8412
+2024-11-28 18:22:16,062 - INFO - Image classifier Epoch 145 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:22:20,419 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9373 | New 0.8431
+2024-11-28 18:22:29,188 - INFO - len of image selected samples: 408
+2024-11-28 18:22:29,188 - INFO - len of text selected samples: 408
+2024-11-28 18:22:38,218 - INFO - Epoch 147/200, Total Loss: 3.2067, Base Loss: 1.7702, Con Loss: 1.3014, Pseudo Loss Image: 0.0766, Pseudo Loss Image: 0.0766
+2024-11-28 18:22:38,218 - INFO -    Param Group: classifier_head, Learning Rate: 0.0164
+2024-11-28 18:22:38,218 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:22:42,539 - INFO - Text classifier Epoch 146 Train Accuracies: All 0.8680 | Old 0.9255 | New 0.8392
+2024-11-28 18:22:42,539 - INFO - Image classifier Epoch 146 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:22:46,897 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:22:55,527 - INFO - len of image selected samples: 408
+2024-11-28 18:22:55,527 - INFO - len of text selected samples: 408
+2024-11-28 18:23:04,474 - INFO - Epoch 148/200, Total Loss: 3.0583, Base Loss: 1.6557, Con Loss: 1.2429, Pseudo Loss Image: 0.0751, Pseudo Loss Image: 0.0751
+2024-11-28 18:23:04,474 - INFO -    Param Group: classifier_head, Learning Rate: 0.0159
+2024-11-28 18:23:04,474 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:23:08,786 - INFO - Text classifier Epoch 147 Train Accuracies: All 0.8667 | Old 0.9216 | New 0.8392
+2024-11-28 18:23:08,786 - INFO - Image classifier Epoch 147 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:23:13,113 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:23:22,073 - INFO - len of image selected samples: 408
+2024-11-28 18:23:22,073 - INFO - len of text selected samples: 408
+2024-11-28 18:23:30,835 - INFO - Epoch 149/200, Total Loss: 3.2097, Base Loss: 1.7772, Con Loss: 1.2573, Pseudo Loss Image: 0.0932, Pseudo Loss Image: 0.0932
+2024-11-28 18:23:30,835 - INFO -    Param Group: classifier_head, Learning Rate: 0.0153
+2024-11-28 18:23:30,835 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:23:35,142 - INFO - Text classifier Epoch 148 Train Accuracies: All 0.8667 | Old 0.9255 | New 0.8373
+2024-11-28 18:23:35,142 - INFO - Image classifier Epoch 148 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:23:39,434 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:23:48,577 - INFO - len of image selected samples: 408
+2024-11-28 18:23:48,577 - INFO - len of text selected samples: 408
+2024-11-28 18:23:57,611 - INFO - Epoch 150/200, Total Loss: 3.0793, Base Loss: 1.6532, Con Loss: 1.2609, Pseudo Loss Image: 0.0773, Pseudo Loss Image: 0.0773
+2024-11-28 18:23:57,612 - INFO -    Param Group: classifier_head, Learning Rate: 0.0147
+2024-11-28 18:23:57,612 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:24:01,972 - INFO - Text classifier Epoch 149 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:24:01,972 - INFO - Image classifier Epoch 149 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:24:06,272 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9333 | New 0.8392
+2024-11-28 18:24:14,941 - INFO - len of image selected samples: 408
+2024-11-28 18:24:14,942 - INFO - len of text selected samples: 408
+2024-11-28 18:24:23,839 - INFO - Epoch 151/200, Total Loss: 3.2161, Base Loss: 1.7744, Con Loss: 1.2847, Pseudo Loss Image: 0.0831, Pseudo Loss Image: 0.0831
+2024-11-28 18:24:23,839 - INFO -    Param Group: classifier_head, Learning Rate: 0.0142
+2024-11-28 18:24:23,839 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:24:28,199 - INFO - Text classifier Epoch 150 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:24:28,199 - INFO - Image classifier Epoch 150 Train Accuracies: All 0.8536 | Old 0.9137 | New 0.8235
+2024-11-28 18:24:32,727 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9333 | New 0.8392
+2024-11-28 18:24:41,430 - INFO - len of image selected samples: 408
+2024-11-28 18:24:41,430 - INFO - len of text selected samples: 408
+2024-11-28 18:24:50,285 - INFO - Epoch 152/200, Total Loss: 3.1438, Base Loss: 1.7453, Con Loss: 1.2599, Pseudo Loss Image: 0.0765, Pseudo Loss Image: 0.0765
+2024-11-28 18:24:50,285 - INFO -    Param Group: classifier_head, Learning Rate: 0.0136
+2024-11-28 18:24:50,285 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:24:54,645 - INFO - Text classifier Epoch 151 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:24:54,645 - INFO - Image classifier Epoch 151 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:24:58,950 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:25:07,559 - INFO - len of image selected samples: 408
+2024-11-28 18:25:07,559 - INFO - len of text selected samples: 408
+2024-11-28 18:25:16,553 - INFO - Epoch 153/200, Total Loss: 3.2279, Base Loss: 1.8019, Con Loss: 1.2668, Pseudo Loss Image: 0.0737, Pseudo Loss Image: 0.0737
+2024-11-28 18:25:16,553 - INFO -    Param Group: classifier_head, Learning Rate: 0.0131
+2024-11-28 18:25:16,553 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:25:20,986 - INFO - Text classifier Epoch 152 Train Accuracies: All 0.8680 | Old 0.9216 | New 0.8412
+2024-11-28 18:25:20,986 - INFO - Image classifier Epoch 152 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:25:25,369 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:25:34,051 - INFO - len of image selected samples: 408
+2024-11-28 18:25:34,051 - INFO - len of text selected samples: 408
+2024-11-28 18:25:42,800 - INFO - Epoch 154/200, Total Loss: 3.1187, Base Loss: 1.7256, Con Loss: 1.2473, Pseudo Loss Image: 0.0747, Pseudo Loss Image: 0.0747
+2024-11-28 18:25:42,800 - INFO -    Param Group: classifier_head, Learning Rate: 0.0126
+2024-11-28 18:25:42,800 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:25:47,145 - INFO - Text classifier Epoch 153 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:25:47,145 - INFO - Image classifier Epoch 153 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:25:51,522 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:26:00,373 - INFO - len of image selected samples: 408
+2024-11-28 18:26:00,374 - INFO - len of text selected samples: 408
+2024-11-28 18:26:09,413 - INFO - Epoch 155/200, Total Loss: 3.2219, Base Loss: 1.7870, Con Loss: 1.2854, Pseudo Loss Image: 0.0845, Pseudo Loss Image: 0.0845
+2024-11-28 18:26:09,413 - INFO -    Param Group: classifier_head, Learning Rate: 0.0121
+2024-11-28 18:26:09,413 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:26:13,735 - INFO - Text classifier Epoch 154 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:26:13,735 - INFO - Image classifier Epoch 154 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:26:18,061 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:26:26,769 - INFO - len of image selected samples: 408
+2024-11-28 18:26:26,769 - INFO - len of text selected samples: 408
+2024-11-28 18:26:35,667 - INFO - Epoch 156/200, Total Loss: 3.2074, Base Loss: 1.7706, Con Loss: 1.2742, Pseudo Loss Image: 0.0881, Pseudo Loss Image: 0.0881
+2024-11-28 18:26:35,667 - INFO -    Param Group: classifier_head, Learning Rate: 0.0116
+2024-11-28 18:26:35,667 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:26:40,009 - INFO - Text classifier Epoch 155 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:26:40,009 - INFO - Image classifier Epoch 155 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:26:44,500 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9294 | New 0.8451
+2024-11-28 18:26:53,201 - INFO - len of image selected samples: 408
+2024-11-28 18:26:53,201 - INFO - len of text selected samples: 408
+2024-11-28 18:27:02,128 - INFO - Epoch 157/200, Total Loss: 3.0613, Base Loss: 1.6631, Con Loss: 1.2312, Pseudo Loss Image: 0.0970, Pseudo Loss Image: 0.0970
+2024-11-28 18:27:02,128 - INFO -    Param Group: classifier_head, Learning Rate: 0.0111
+2024-11-28 18:27:02,128 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:27:06,525 - INFO - Text classifier Epoch 156 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:27:06,525 - INFO - Image classifier Epoch 156 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:27:10,894 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:27:19,812 - INFO - len of image selected samples: 408
+2024-11-28 18:27:19,812 - INFO - len of text selected samples: 408
+2024-11-28 18:27:28,854 - INFO - Epoch 158/200, Total Loss: 3.1848, Base Loss: 1.7494, Con Loss: 1.2940, Pseudo Loss Image: 0.0745, Pseudo Loss Image: 0.0745
+2024-11-28 18:27:28,854 - INFO -    Param Group: classifier_head, Learning Rate: 0.0106
+2024-11-28 18:27:28,854 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:27:33,189 - INFO - Text classifier Epoch 157 Train Accuracies: All 0.8732 | Old 0.9216 | New 0.8490
+2024-11-28 18:27:33,189 - INFO - Image classifier Epoch 157 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:27:37,485 - INFO - Weighted Accuracies: All 0.8745 | Old 0.9333 | New 0.8451
+2024-11-28 18:27:46,464 - INFO - len of image selected samples: 408
+2024-11-28 18:27:46,465 - INFO - len of text selected samples: 408
+2024-11-28 18:27:55,525 - INFO - Epoch 159/200, Total Loss: 3.2182, Base Loss: 1.7819, Con Loss: 1.2738, Pseudo Loss Image: 0.0725, Pseudo Loss Image: 0.0725
+2024-11-28 18:27:55,525 - INFO -    Param Group: classifier_head, Learning Rate: 0.0101
+2024-11-28 18:27:55,525 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:27:59,825 - INFO - Text classifier Epoch 158 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:27:59,826 - INFO - Image classifier Epoch 158 Train Accuracies: All 0.8562 | Old 0.9098 | New 0.8294
+2024-11-28 18:28:04,150 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:28:12,781 - INFO - len of image selected samples: 408
+2024-11-28 18:28:12,781 - INFO - len of text selected samples: 408
+2024-11-28 18:28:21,636 - INFO - Epoch 160/200, Total Loss: 3.3152, Base Loss: 1.8598, Con Loss: 1.2875, Pseudo Loss Image: 0.0821, Pseudo Loss Image: 0.0821
+2024-11-28 18:28:21,637 - INFO -    Param Group: classifier_head, Learning Rate: 0.0096
+2024-11-28 18:28:21,637 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:28:26,016 - INFO - Text classifier Epoch 159 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:28:26,016 - INFO - Image classifier Epoch 159 Train Accuracies: All 0.8562 | Old 0.9098 | New 0.8294
+2024-11-28 18:28:30,315 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:28:39,029 - INFO - len of image selected samples: 408
+2024-11-28 18:28:39,029 - INFO - len of text selected samples: 408
+2024-11-28 18:28:47,968 - INFO - Epoch 161/200, Total Loss: 3.0207, Base Loss: 1.6105, Con Loss: 1.2605, Pseudo Loss Image: 0.0814, Pseudo Loss Image: 0.0814
+2024-11-28 18:28:47,968 - INFO -    Param Group: classifier_head, Learning Rate: 0.0092
+2024-11-28 18:28:47,968 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:28:52,310 - INFO - Text classifier Epoch 160 Train Accuracies: All 0.8732 | Old 0.9216 | New 0.8490
+2024-11-28 18:28:52,311 - INFO - Image classifier Epoch 160 Train Accuracies: All 0.8601 | Old 0.9059 | New 0.8373
+2024-11-28 18:28:56,649 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:29:05,577 - INFO - len of image selected samples: 408
+2024-11-28 18:29:05,577 - INFO - len of text selected samples: 408
+2024-11-28 18:29:14,390 - INFO - Epoch 162/200, Total Loss: 3.2033, Base Loss: 1.7789, Con Loss: 1.2755, Pseudo Loss Image: 0.0804, Pseudo Loss Image: 0.0804
+2024-11-28 18:29:14,390 - INFO -    Param Group: classifier_head, Learning Rate: 0.0087
+2024-11-28 18:29:14,390 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:29:18,839 - INFO - Text classifier Epoch 161 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:29:18,840 - INFO - Image classifier Epoch 161 Train Accuracies: All 0.8549 | Old 0.9059 | New 0.8294
+2024-11-28 18:29:23,153 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:29:32,030 - INFO - len of image selected samples: 408
+2024-11-28 18:29:32,030 - INFO - len of text selected samples: 408
+2024-11-28 18:29:40,962 - INFO - Epoch 163/200, Total Loss: 3.2079, Base Loss: 1.7788, Con Loss: 1.2886, Pseudo Loss Image: 0.0758, Pseudo Loss Image: 0.0758
+2024-11-28 18:29:40,962 - INFO -    Param Group: classifier_head, Learning Rate: 0.0083
+2024-11-28 18:29:40,962 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:29:45,343 - INFO - Text classifier Epoch 162 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:29:45,344 - INFO - Image classifier Epoch 162 Train Accuracies: All 0.8523 | Old 0.9059 | New 0.8255
+2024-11-28 18:29:49,707 - INFO - Weighted Accuracies: All 0.8732 | Old 0.9333 | New 0.8431
+2024-11-28 18:29:58,428 - INFO - len of image selected samples: 408
+2024-11-28 18:29:58,428 - INFO - len of text selected samples: 408
+2024-11-28 18:30:07,040 - INFO - Epoch 164/200, Total Loss: 3.1099, Base Loss: 1.7275, Con Loss: 1.2393, Pseudo Loss Image: 0.0753, Pseudo Loss Image: 0.0753
+2024-11-28 18:30:07,040 - INFO -    Param Group: classifier_head, Learning Rate: 0.0079
+2024-11-28 18:30:07,040 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:30:11,360 - INFO - Text classifier Epoch 163 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:30:11,361 - INFO - Image classifier Epoch 163 Train Accuracies: All 0.8523 | Old 0.9059 | New 0.8255
+2024-11-28 18:30:15,676 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9333 | New 0.8412
+2024-11-28 18:30:24,287 - INFO - len of image selected samples: 408
+2024-11-28 18:30:24,287 - INFO - len of text selected samples: 408
+2024-11-28 18:30:33,088 - INFO - Epoch 165/200, Total Loss: 3.2516, Base Loss: 1.7849, Con Loss: 1.3106, Pseudo Loss Image: 0.0817, Pseudo Loss Image: 0.0817
+2024-11-28 18:30:33,089 - INFO -    Param Group: classifier_head, Learning Rate: 0.0075
+2024-11-28 18:30:33,089 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:30:37,464 - INFO - Text classifier Epoch 164 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:30:37,464 - INFO - Image classifier Epoch 164 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:30:41,828 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:30:50,515 - INFO - len of image selected samples: 408
+2024-11-28 18:30:50,515 - INFO - len of text selected samples: 408
+2024-11-28 18:30:59,553 - INFO - Epoch 166/200, Total Loss: 3.2079, Base Loss: 1.7873, Con Loss: 1.2654, Pseudo Loss Image: 0.0792, Pseudo Loss Image: 0.0792
+2024-11-28 18:30:59,554 - INFO -    Param Group: classifier_head, Learning Rate: 0.0071
+2024-11-28 18:30:59,554 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:31:03,954 - INFO - Text classifier Epoch 165 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:31:03,954 - INFO - Image classifier Epoch 165 Train Accuracies: All 0.8601 | Old 0.9098 | New 0.8353
+2024-11-28 18:31:08,337 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:31:17,229 - INFO - len of image selected samples: 408
+2024-11-28 18:31:17,229 - INFO - len of text selected samples: 408
+2024-11-28 18:31:26,036 - INFO - Epoch 167/200, Total Loss: 3.1179, Base Loss: 1.7459, Con Loss: 1.2433, Pseudo Loss Image: 0.0657, Pseudo Loss Image: 0.0657
+2024-11-28 18:31:26,036 - INFO -    Param Group: classifier_head, Learning Rate: 0.0067
+2024-11-28 18:31:26,036 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:31:30,664 - INFO - Text classifier Epoch 166 Train Accuracies: All 0.8680 | Old 0.9216 | New 0.8412
+2024-11-28 18:31:30,665 - INFO - Image classifier Epoch 166 Train Accuracies: All 0.8588 | Old 0.9098 | New 0.8333
+2024-11-28 18:31:35,175 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:31:44,046 - INFO - len of image selected samples: 408
+2024-11-28 18:31:44,047 - INFO - len of text selected samples: 408
+2024-11-28 18:31:52,995 - INFO - Epoch 168/200, Total Loss: 2.9551, Base Loss: 1.5971, Con Loss: 1.2240, Pseudo Loss Image: 0.0699, Pseudo Loss Image: 0.0699
+2024-11-28 18:31:52,995 - INFO -    Param Group: classifier_head, Learning Rate: 0.0063
+2024-11-28 18:31:52,995 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:31:57,311 - INFO - Text classifier Epoch 167 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:31:57,311 - INFO - Image classifier Epoch 167 Train Accuracies: All 0.8562 | Old 0.9098 | New 0.8294
+2024-11-28 18:32:01,727 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:32:10,372 - INFO - len of image selected samples: 408
+2024-11-28 18:32:10,373 - INFO - len of text selected samples: 408
+2024-11-28 18:32:19,344 - INFO - Epoch 169/200, Total Loss: 3.3021, Base Loss: 1.8884, Con Loss: 1.2561, Pseudo Loss Image: 0.0732, Pseudo Loss Image: 0.0732
+2024-11-28 18:32:19,345 - INFO -    Param Group: classifier_head, Learning Rate: 0.0059
+2024-11-28 18:32:19,345 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:32:23,724 - INFO - Text classifier Epoch 168 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:32:23,724 - INFO - Image classifier Epoch 168 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:32:28,142 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:32:36,883 - INFO - len of image selected samples: 408
+2024-11-28 18:32:36,883 - INFO - len of text selected samples: 408
+2024-11-28 18:32:45,564 - INFO - Epoch 170/200, Total Loss: 3.1676, Base Loss: 1.7726, Con Loss: 1.2679, Pseudo Loss Image: 0.0665, Pseudo Loss Image: 0.0665
+2024-11-28 18:32:45,564 - INFO -    Param Group: classifier_head, Learning Rate: 0.0055
+2024-11-28 18:32:45,564 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:32:49,905 - INFO - Text classifier Epoch 169 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:32:49,905 - INFO - Image classifier Epoch 169 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:32:54,212 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:33:02,930 - INFO - len of image selected samples: 408
+2024-11-28 18:33:02,930 - INFO - len of text selected samples: 408
+2024-11-28 18:33:11,835 - INFO - Epoch 171/200, Total Loss: 3.0949, Base Loss: 1.7145, Con Loss: 1.2590, Pseudo Loss Image: 0.0634, Pseudo Loss Image: 0.0634
+2024-11-28 18:33:11,835 - INFO -    Param Group: classifier_head, Learning Rate: 0.0052
+2024-11-28 18:33:11,835 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:33:16,199 - INFO - Text classifier Epoch 170 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:33:16,199 - INFO - Image classifier Epoch 170 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:33:20,506 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:33:29,147 - INFO - len of image selected samples: 408
+2024-11-28 18:33:29,147 - INFO - len of text selected samples: 408
+2024-11-28 18:33:37,841 - INFO - Epoch 172/200, Total Loss: 3.0787, Base Loss: 1.7360, Con Loss: 1.2220, Pseudo Loss Image: 0.0675, Pseudo Loss Image: 0.0675
+2024-11-28 18:33:37,841 - INFO -    Param Group: classifier_head, Learning Rate: 0.0049
+2024-11-28 18:33:37,841 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:33:42,304 - INFO - Text classifier Epoch 171 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:33:42,304 - INFO - Image classifier Epoch 171 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:33:46,696 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:33:55,384 - INFO - len of image selected samples: 408
+2024-11-28 18:33:55,384 - INFO - len of text selected samples: 408
+2024-11-28 18:34:04,163 - INFO - Epoch 173/200, Total Loss: 3.1241, Base Loss: 1.7535, Con Loss: 1.2282, Pseudo Loss Image: 0.0695, Pseudo Loss Image: 0.0695
+2024-11-28 18:34:04,163 - INFO -    Param Group: classifier_head, Learning Rate: 0.0045
+2024-11-28 18:34:04,163 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:34:08,544 - INFO - Text classifier Epoch 172 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:34:08,544 - INFO - Image classifier Epoch 172 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:34:12,938 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:34:21,662 - INFO - len of image selected samples: 408
+2024-11-28 18:34:21,662 - INFO - len of text selected samples: 408
+2024-11-28 18:34:30,378 - INFO - Epoch 174/200, Total Loss: 3.1451, Base Loss: 1.7519, Con Loss: 1.2701, Pseudo Loss Image: 0.0630, Pseudo Loss Image: 0.0630
+2024-11-28 18:34:30,378 - INFO -    Param Group: classifier_head, Learning Rate: 0.0042
+2024-11-28 18:34:30,378 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:34:34,754 - INFO - Text classifier Epoch 173 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:34:34,755 - INFO - Image classifier Epoch 173 Train Accuracies: All 0.8575 | Old 0.9098 | New 0.8314
+2024-11-28 18:34:39,130 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:34:47,951 - INFO - len of image selected samples: 408
+2024-11-28 18:34:47,952 - INFO - len of text selected samples: 408
+2024-11-28 18:34:56,908 - INFO - Epoch 175/200, Total Loss: 3.1985, Base Loss: 1.7988, Con Loss: 1.2800, Pseudo Loss Image: 0.0648, Pseudo Loss Image: 0.0648
+2024-11-28 18:34:56,908 - INFO -    Param Group: classifier_head, Learning Rate: 0.0039
+2024-11-28 18:34:56,908 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:35:01,244 - INFO - Text classifier Epoch 174 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:35:01,244 - INFO - Image classifier Epoch 174 Train Accuracies: All 0.8588 | Old 0.9137 | New 0.8314
+2024-11-28 18:35:05,939 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:35:14,857 - INFO - len of image selected samples: 408
+2024-11-28 18:35:14,858 - INFO - len of text selected samples: 408
+2024-11-28 18:35:23,745 - INFO - Epoch 176/200, Total Loss: 3.1474, Base Loss: 1.7556, Con Loss: 1.2494, Pseudo Loss Image: 0.0624, Pseudo Loss Image: 0.0624
+2024-11-28 18:35:23,745 - INFO -    Param Group: classifier_head, Learning Rate: 0.0036
+2024-11-28 18:35:23,745 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:35:28,146 - INFO - Text classifier Epoch 175 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:35:28,146 - INFO - Image classifier Epoch 175 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:35:32,498 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:35:41,149 - INFO - len of image selected samples: 408
+2024-11-28 18:35:41,149 - INFO - len of text selected samples: 408
+2024-11-28 18:35:50,082 - INFO - Epoch 177/200, Total Loss: 3.1392, Base Loss: 1.7607, Con Loss: 1.2607, Pseudo Loss Image: 0.0667, Pseudo Loss Image: 0.0667
+2024-11-28 18:35:50,082 - INFO -    Param Group: classifier_head, Learning Rate: 0.0033
+2024-11-28 18:35:50,082 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:35:54,422 - INFO - Text classifier Epoch 176 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:35:54,423 - INFO - Image classifier Epoch 176 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:35:58,733 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:36:07,419 - INFO - len of image selected samples: 408
+2024-11-28 18:36:07,419 - INFO - len of text selected samples: 408
+2024-11-28 18:36:16,310 - INFO - Epoch 178/200, Total Loss: 3.2401, Base Loss: 1.8219, Con Loss: 1.2749, Pseudo Loss Image: 0.0708, Pseudo Loss Image: 0.0708
+2024-11-28 18:36:16,310 - INFO -    Param Group: classifier_head, Learning Rate: 0.0031
+2024-11-28 18:36:16,310 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:36:20,617 - INFO - Text classifier Epoch 177 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:36:20,617 - INFO - Image classifier Epoch 177 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:36:24,971 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:36:33,661 - INFO - len of image selected samples: 408
+2024-11-28 18:36:33,661 - INFO - len of text selected samples: 408
+2024-11-28 18:36:42,667 - INFO - Epoch 179/200, Total Loss: 3.0247, Base Loss: 1.6809, Con Loss: 1.2040, Pseudo Loss Image: 0.0691, Pseudo Loss Image: 0.0691
+2024-11-28 18:36:42,667 - INFO -    Param Group: classifier_head, Learning Rate: 0.0028
+2024-11-28 18:36:42,667 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:36:47,052 - INFO - Text classifier Epoch 178 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:36:47,052 - INFO - Image classifier Epoch 178 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:36:51,421 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:37:00,164 - INFO - len of image selected samples: 408
+2024-11-28 18:37:00,164 - INFO - len of text selected samples: 408
+2024-11-28 18:37:09,044 - INFO - Epoch 180/200, Total Loss: 3.0629, Base Loss: 1.6980, Con Loss: 1.2372, Pseudo Loss Image: 0.0668, Pseudo Loss Image: 0.0668
+2024-11-28 18:37:09,044 - INFO -    Param Group: classifier_head, Learning Rate: 0.0025
+2024-11-28 18:37:09,044 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:37:13,496 - INFO - Text classifier Epoch 179 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:37:13,497 - INFO - Image classifier Epoch 179 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:37:17,889 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:37:26,789 - INFO - len of image selected samples: 408
+2024-11-28 18:37:26,790 - INFO - len of text selected samples: 408
+2024-11-28 18:37:35,684 - INFO - Epoch 181/200, Total Loss: 3.1404, Base Loss: 1.7555, Con Loss: 1.2397, Pseudo Loss Image: 0.0737, Pseudo Loss Image: 0.0737
+2024-11-28 18:37:35,684 - INFO -    Param Group: classifier_head, Learning Rate: 0.0023
+2024-11-28 18:37:35,684 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:37:40,011 - INFO - Text classifier Epoch 180 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:37:40,011 - INFO - Image classifier Epoch 180 Train Accuracies: All 0.8562 | Old 0.9176 | New 0.8255
+2024-11-28 18:37:44,368 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:37:53,038 - INFO - len of image selected samples: 408
+2024-11-28 18:37:53,039 - INFO - len of text selected samples: 408
+2024-11-28 18:38:01,931 - INFO - Epoch 182/200, Total Loss: 3.0263, Base Loss: 1.6760, Con Loss: 1.2113, Pseudo Loss Image: 0.0668, Pseudo Loss Image: 0.0668
+2024-11-28 18:38:01,931 - INFO -    Param Group: classifier_head, Learning Rate: 0.0021
+2024-11-28 18:38:01,931 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:38:06,251 - INFO - Text classifier Epoch 181 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:38:06,251 - INFO - Image classifier Epoch 181 Train Accuracies: All 0.8562 | Old 0.9176 | New 0.8255
+2024-11-28 18:38:10,628 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:38:19,282 - INFO - len of image selected samples: 408
+2024-11-28 18:38:19,282 - INFO - len of text selected samples: 408
+2024-11-28 18:38:28,139 - INFO - Epoch 183/200, Total Loss: 3.2264, Base Loss: 1.8248, Con Loss: 1.2668, Pseudo Loss Image: 0.0719, Pseudo Loss Image: 0.0719
+2024-11-28 18:38:28,139 - INFO -    Param Group: classifier_head, Learning Rate: 0.0019
+2024-11-28 18:38:28,139 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:38:32,711 - INFO - Text classifier Epoch 182 Train Accuracies: All 0.8732 | Old 0.9216 | New 0.8490
+2024-11-28 18:38:32,711 - INFO - Image classifier Epoch 182 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:38:37,012 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:38:45,685 - INFO - len of image selected samples: 408
+2024-11-28 18:38:45,686 - INFO - len of text selected samples: 408
+2024-11-28 18:38:54,662 - INFO - Epoch 184/200, Total Loss: 3.1391, Base Loss: 1.7356, Con Loss: 1.2458, Pseudo Loss Image: 0.0659, Pseudo Loss Image: 0.0659
+2024-11-28 18:38:54,662 - INFO -    Param Group: classifier_head, Learning Rate: 0.0017
+2024-11-28 18:38:54,662 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:38:59,037 - INFO - Text classifier Epoch 183 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:38:59,037 - INFO - Image classifier Epoch 183 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:39:03,492 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:39:12,325 - INFO - len of image selected samples: 408
+2024-11-28 18:39:12,326 - INFO - len of text selected samples: 408
+2024-11-28 18:39:21,234 - INFO - Epoch 185/200, Total Loss: 3.1559, Base Loss: 1.7873, Con Loss: 1.2482, Pseudo Loss Image: 0.0617, Pseudo Loss Image: 0.0617
+2024-11-28 18:39:21,234 - INFO -    Param Group: classifier_head, Learning Rate: 0.0015
+2024-11-28 18:39:21,234 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:39:25,624 - INFO - Text classifier Epoch 184 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:39:25,624 - INFO - Image classifier Epoch 184 Train Accuracies: All 0.8575 | Old 0.9176 | New 0.8275
+2024-11-28 18:39:30,002 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:39:38,750 - INFO - len of image selected samples: 408
+2024-11-28 18:39:38,750 - INFO - len of text selected samples: 408
+2024-11-28 18:39:47,604 - INFO - Epoch 186/200, Total Loss: 3.0740, Base Loss: 1.7259, Con Loss: 1.2180, Pseudo Loss Image: 0.0619, Pseudo Loss Image: 0.0619
+2024-11-28 18:39:47,604 - INFO -    Param Group: classifier_head, Learning Rate: 0.0013
+2024-11-28 18:39:47,604 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:39:51,958 - INFO - Text classifier Epoch 185 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:39:51,958 - INFO - Image classifier Epoch 185 Train Accuracies: All 0.8588 | Old 0.9176 | New 0.8294
+2024-11-28 18:39:56,304 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:40:04,993 - INFO - len of image selected samples: 408
+2024-11-28 18:40:04,993 - INFO - len of text selected samples: 408
+2024-11-28 18:40:13,949 - INFO - Epoch 187/200, Total Loss: 3.0703, Base Loss: 1.7019, Con Loss: 1.2325, Pseudo Loss Image: 0.0670, Pseudo Loss Image: 0.0670
+2024-11-28 18:40:13,949 - INFO -    Param Group: classifier_head, Learning Rate: 0.0011
+2024-11-28 18:40:13,949 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:40:18,359 - INFO - Text classifier Epoch 186 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:40:18,359 - INFO - Image classifier Epoch 186 Train Accuracies: All 0.8575 | Old 0.9176 | New 0.8275
+2024-11-28 18:40:22,688 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:40:31,373 - INFO - len of image selected samples: 408
+2024-11-28 18:40:31,374 - INFO - len of text selected samples: 408
+2024-11-28 18:40:40,355 - INFO - Epoch 188/200, Total Loss: 3.1839, Base Loss: 1.8089, Con Loss: 1.2558, Pseudo Loss Image: 0.0613, Pseudo Loss Image: 0.0613
+2024-11-28 18:40:40,355 - INFO -    Param Group: classifier_head, Learning Rate: 0.0010
+2024-11-28 18:40:40,355 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:40:44,706 - INFO - Text classifier Epoch 187 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:40:44,706 - INFO - Image classifier Epoch 187 Train Accuracies: All 0.8562 | Old 0.9176 | New 0.8255
+2024-11-28 18:40:49,057 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:40:57,797 - INFO - len of image selected samples: 408
+2024-11-28 18:40:57,797 - INFO - len of text selected samples: 408
+2024-11-28 18:41:06,702 - INFO - Epoch 189/200, Total Loss: 3.1474, Base Loss: 1.7930, Con Loss: 1.2200, Pseudo Loss Image: 0.0670, Pseudo Loss Image: 0.0670
+2024-11-28 18:41:06,702 - INFO -    Param Group: classifier_head, Learning Rate: 0.0008
+2024-11-28 18:41:06,702 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:41:11,071 - INFO - Text classifier Epoch 188 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:41:11,071 - INFO - Image classifier Epoch 188 Train Accuracies: All 0.8575 | Old 0.9176 | New 0.8275
+2024-11-28 18:41:15,398 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:41:24,023 - INFO - len of image selected samples: 408
+2024-11-28 18:41:24,023 - INFO - len of text selected samples: 408
+2024-11-28 18:41:33,004 - INFO - Epoch 190/200, Total Loss: 3.0839, Base Loss: 1.7188, Con Loss: 1.2182, Pseudo Loss Image: 0.0663, Pseudo Loss Image: 0.0663
+2024-11-28 18:41:33,004 - INFO -    Param Group: classifier_head, Learning Rate: 0.0007
+2024-11-28 18:41:33,004 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:41:37,325 - INFO - Text classifier Epoch 189 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:41:37,325 - INFO - Image classifier Epoch 189 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:41:41,655 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:41:50,320 - INFO - len of image selected samples: 408
+2024-11-28 18:41:50,320 - INFO - len of text selected samples: 408
+2024-11-28 18:41:59,303 - INFO - Epoch 191/200, Total Loss: 3.1162, Base Loss: 1.7762, Con Loss: 1.2243, Pseudo Loss Image: 0.0592, Pseudo Loss Image: 0.0592
+2024-11-28 18:41:59,303 - INFO -    Param Group: classifier_head, Learning Rate: 0.0006
+2024-11-28 18:41:59,303 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:42:03,669 - INFO - Text classifier Epoch 190 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:42:03,669 - INFO - Image classifier Epoch 190 Train Accuracies: All 0.8588 | Old 0.9137 | New 0.8314
+2024-11-28 18:42:07,975 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:42:16,555 - INFO - len of image selected samples: 408
+2024-11-28 18:42:16,555 - INFO - len of text selected samples: 408
+2024-11-28 18:42:25,009 - INFO - Epoch 192/200, Total Loss: 3.1198, Base Loss: 1.7560, Con Loss: 1.2181, Pseudo Loss Image: 0.0613, Pseudo Loss Image: 0.0613
+2024-11-28 18:42:25,009 - INFO -    Param Group: classifier_head, Learning Rate: 0.0005
+2024-11-28 18:42:25,009 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:42:29,319 - INFO - Text classifier Epoch 191 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:42:29,320 - INFO - Image classifier Epoch 191 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:42:33,646 - INFO - Weighted Accuracies: All 0.8719 | Old 0.9294 | New 0.8431
+2024-11-28 18:42:42,539 - INFO - len of image selected samples: 408
+2024-11-28 18:42:42,539 - INFO - len of text selected samples: 408
+2024-11-28 18:42:51,575 - INFO - Epoch 193/200, Total Loss: 2.9992, Base Loss: 1.6245, Con Loss: 1.2238, Pseudo Loss Image: 0.0795, Pseudo Loss Image: 0.0795
+2024-11-28 18:42:51,575 - INFO -    Param Group: classifier_head, Learning Rate: 0.0004
+2024-11-28 18:42:51,575 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:42:56,070 - INFO - Text classifier Epoch 192 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:42:56,070 - INFO - Image classifier Epoch 192 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:43:00,529 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:43:09,324 - INFO - len of image selected samples: 408
+2024-11-28 18:43:09,324 - INFO - len of text selected samples: 408
+2024-11-28 18:43:18,336 - INFO - Epoch 194/200, Total Loss: 3.0393, Base Loss: 1.6813, Con Loss: 1.2247, Pseudo Loss Image: 0.0676, Pseudo Loss Image: 0.0676
+2024-11-28 18:43:18,336 - INFO -    Param Group: classifier_head, Learning Rate: 0.0003
+2024-11-28 18:43:18,336 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:43:22,670 - INFO - Text classifier Epoch 193 Train Accuracies: All 0.8693 | Old 0.9216 | New 0.8431
+2024-11-28 18:43:22,670 - INFO - Image classifier Epoch 193 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:43:26,952 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:43:35,640 - INFO - len of image selected samples: 408
+2024-11-28 18:43:35,642 - INFO - len of text selected samples: 408
+2024-11-28 18:43:44,638 - INFO - Epoch 195/200, Total Loss: 3.0455, Base Loss: 1.7305, Con Loss: 1.1888, Pseudo Loss Image: 0.0670, Pseudo Loss Image: 0.0670
+2024-11-28 18:43:44,638 - INFO -    Param Group: classifier_head, Learning Rate: 0.0003
+2024-11-28 18:43:44,638 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:43:48,979 - INFO - Text classifier Epoch 194 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:43:48,979 - INFO - Image classifier Epoch 194 Train Accuracies: All 0.8575 | Old 0.9137 | New 0.8294
+2024-11-28 18:43:53,318 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:44:01,918 - INFO - len of image selected samples: 408
+2024-11-28 18:44:01,918 - INFO - len of text selected samples: 408
+2024-11-28 18:44:10,715 - INFO - Epoch 196/200, Total Loss: 3.0563, Base Loss: 1.7122, Con Loss: 1.2268, Pseudo Loss Image: 0.0639, Pseudo Loss Image: 0.0639
+2024-11-28 18:44:10,715 - INFO -    Param Group: classifier_head, Learning Rate: 0.0002
+2024-11-28 18:44:10,715 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:44:15,047 - INFO - Text classifier Epoch 195 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:44:15,048 - INFO - Image classifier Epoch 195 Train Accuracies: All 0.8536 | Old 0.9098 | New 0.8255
+2024-11-28 18:44:19,407 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:44:28,124 - INFO - len of image selected samples: 408
+2024-11-28 18:44:28,125 - INFO - len of text selected samples: 408
+2024-11-28 18:44:37,123 - INFO - Epoch 197/200, Total Loss: 3.3147, Base Loss: 1.9452, Con Loss: 1.2408, Pseudo Loss Image: 0.0708, Pseudo Loss Image: 0.0708
+2024-11-28 18:44:37,123 - INFO -    Param Group: classifier_head, Learning Rate: 0.0002
+2024-11-28 18:44:37,123 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:44:41,476 - INFO - Text classifier Epoch 196 Train Accuracies: All 0.8732 | Old 0.9216 | New 0.8490
+2024-11-28 18:44:41,476 - INFO - Image classifier Epoch 196 Train Accuracies: All 0.8549 | Old 0.9137 | New 0.8255
+2024-11-28 18:44:45,784 - INFO - Weighted Accuracies: All 0.8693 | Old 0.9294 | New 0.8392
+2024-11-28 18:44:54,520 - INFO - len of image selected samples: 408
+2024-11-28 18:44:54,521 - INFO - len of text selected samples: 408
+2024-11-28 18:45:03,604 - INFO - Epoch 198/200, Total Loss: 3.1134, Base Loss: 1.7909, Con Loss: 1.1962, Pseudo Loss Image: 0.0638, Pseudo Loss Image: 0.0638
+2024-11-28 18:45:03,604 - INFO -    Param Group: classifier_head, Learning Rate: 0.0001
+2024-11-28 18:45:03,604 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:45:08,107 - INFO - Text classifier Epoch 197 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:45:08,107 - INFO - Image classifier Epoch 197 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:45:12,438 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:45:21,100 - INFO - len of image selected samples: 408
+2024-11-28 18:45:21,100 - INFO - len of text selected samples: 408
+2024-11-28 18:45:29,985 - INFO - Epoch 199/200, Total Loss: 2.9862, Base Loss: 1.6679, Con Loss: 1.2030, Pseudo Loss Image: 0.0601, Pseudo Loss Image: 0.0601
+2024-11-28 18:45:29,985 - INFO -    Param Group: classifier_head, Learning Rate: 0.0001
+2024-11-28 18:45:29,985 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:45:34,319 - INFO - Text classifier Epoch 198 Train Accuracies: All 0.8719 | Old 0.9216 | New 0.8471
+2024-11-28 18:45:34,319 - INFO - Image classifier Epoch 198 Train Accuracies: All 0.8562 | Old 0.9137 | New 0.8275
+2024-11-28 18:45:38,806 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
+2024-11-28 18:45:47,846 - INFO - len of image selected samples: 408
+2024-11-28 18:45:47,847 - INFO - len of text selected samples: 408
+2024-11-28 18:45:56,769 - INFO - Epoch 200/200, Total Loss: 3.0534, Base Loss: 1.7056, Con Loss: 1.2136, Pseudo Loss Image: 0.0705, Pseudo Loss Image: 0.0705
+2024-11-28 18:45:56,769 - INFO -    Param Group: classifier_head, Learning Rate: 0.0001
+2024-11-28 18:45:56,769 - INFO -    Param Group: base_parameters, Learning Rate: 0.0005
+2024-11-28 18:46:01,110 - INFO - Text classifier Epoch 199 Train Accuracies: All 0.8706 | Old 0.9216 | New 0.8451
+2024-11-28 18:46:01,110 - INFO - Image classifier Epoch 199 Train Accuracies: All 0.8549 | Old 0.9098 | New 0.8275
+2024-11-28 18:46:05,434 - INFO - Weighted Accuracies: All 0.8706 | Old 0.9294 | New 0.8412
