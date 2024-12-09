@@ -47,8 +47,6 @@ mkdir retrieved_text
 bash scripts/train_${DATASET_NAME}.sh
 ```
 
-We found picking the model according to 'Old' class performance could lead to possible over-fitting, and since 'New' class labels on the held-out validation set should be assumed unavailable, we suggest not to perform model selection, and simply use the last-epoch model.
-
 ## Results
 Our results:
 
